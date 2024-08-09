@@ -2,12 +2,21 @@ import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 
+type StoryProps = {
+  defaultValue: string;
+};
+
 export default {
   title: 'Components/Tabs',
   component: Tabs,
   subcomponents: { TabsList, TabsTrigger, TabsContent },
   args: {
     defaultValue: 'one',
+  },
+  argTypes: {
+    defaultValue: {
+      control: 'text',
+    },
   },
 } as Meta;
 
@@ -43,17 +52,17 @@ function DisabledTemplate(args: { defaultValue: string }) {
   );
 }
 
-export const Default: StoryFn<any> = Template.bind({});
+export const Default: StoryFn<StoryProps> = Template.bind({});
 Default.args = {
   defaultValue: 'one',
 };
 
-export const WithDifferentDefault: StoryFn<any> = Template.bind({});
+export const WithDifferentDefault: StoryFn<StoryProps> = Template.bind({});
 WithDifferentDefault.args = {
   defaultValue: 'two',
 };
 
-export const WithDisabledTab: StoryFn<any> = DisabledTemplate.bind({});
+export const WithDisabledTab: StoryFn<StoryProps> = DisabledTemplate.bind({});
 WithDisabledTab.args = {
   defaultValue: 'one',
 };
