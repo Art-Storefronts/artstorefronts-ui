@@ -1,7 +1,7 @@
-import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { Button, ButtonProps } from '@/components/ui/button';
 import { Github, Loader } from 'lucide-react';
+import { StoryWrapper } from '@/lib/storywrapper';
 
 export default {
   title: 'Components/Button',
@@ -21,7 +21,11 @@ export default {
   },
 } as Meta;
 
-const Template: StoryFn<ButtonProps> = (args) => <Button {...args} />;
+const Template: StoryFn<ButtonProps> = (args) => (
+  <StoryWrapper>
+    <Button {...args} />
+  </StoryWrapper>
+);
 
 export const Default = Template.bind({});
 Default.args = {
