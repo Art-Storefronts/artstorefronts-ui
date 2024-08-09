@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
+import { StoryWrapper } from '@/lib/storywrapper';
 
 export default {
   title: 'Components/Accordion',
@@ -18,16 +19,6 @@ export default {
 interface AccordionStoryProps {
   type: 'single' | 'multiple';
   collapsible: boolean;
-}
-
-function StoryWrapper({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="w-[40rem]">
-        {children}
-      </div>
-    </div>
-  );
 }
 
 function Template(args: AccordionStoryProps) {
