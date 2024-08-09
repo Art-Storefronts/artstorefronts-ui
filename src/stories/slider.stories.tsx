@@ -40,7 +40,7 @@ export default {
 // Define the template for your component's stories
 function Template({ disabled, defaultValue, min, max, step, inverted }: SliderProps) {
   return (
-    <div className="h-80 w-80">
+    <div className="w-80">
       <Slider
         disabled={disabled}
         defaultValue={defaultValue ? defaultValue : [0]}
