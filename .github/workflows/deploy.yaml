@@ -9,6 +9,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     permissions:
+      id-token: write
       contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
