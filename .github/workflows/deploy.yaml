@@ -29,9 +29,14 @@ jobs:
       - name: Build Storybook
         run: yarn build-storybook
 
-      - name: Deploy Storybook to GitHub Pages
+      - name: Upload Storybook to GitHub Pages artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages
+          path: ./storybook-static
+
+      - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
-        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./storybook-static
+          artifact_name: github-pages
