@@ -1,0 +1,54 @@
+import { Meta } from '@storybook/blocks';
+
+import logo from '../../../docs/asf-logo.png';
+
+<Meta title="Introduction" />
+
+<p align="center" width="100%">
+  <img src={logo} />
+</p>
+
+### A collection of customizable React components built with TypeScript, Tailwind CSS, and Storybook. The components have been designed to be lightweight and easy to integrate into React projects.
+
+Explore the components and check out the live documentation using the sidebar.
+
+## Requirements
+
+Before installing and using this library, ensure that your project meets the following requirements:
+
+- **React**: Version 17.0 or higher
+- **Tailwind CSS**: Version 3.0 or higher
+
+## Get Started
+
+### Install @artstorefronts/ui
+
+To install the library, use npm or yarn:
+
+```bash
+# Using npm
+npm install @artstorefronts/ui
+
+# Using yarn
+yarn add @artstorefronts/ui
+```
+
+### Install Tailwind CSS
+
+You must also have Tailwind CSS installed in your project. If you don't have it yet, you can install it by following these [these instructions](https://tailwindcss.com/docs/installation).
+
+## Usage
+
+Once the library is installed, you can start using the components in your project. Here's an example of how to use a component:
+
+```javascript
+import { Button } from '@artstorefronts/ui';
+
+const App = () => (
+  <div className="container mx-auto">
+    <Button variant="outline" />
+  </div>
+);
+
+export default App;
+```

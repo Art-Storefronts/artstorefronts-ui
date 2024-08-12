@@ -28,7 +28,7 @@ interface AccordionStoryProps {
 
 function Template(args: AccordionStoryProps) {
   return (
-    <Accordion {...args}>
+    <Accordion {...args} className="w-72">
       <AccordionItem value="item-1">
         <AccordionTrigger>Item 1</AccordionTrigger>
         <AccordionContent>
