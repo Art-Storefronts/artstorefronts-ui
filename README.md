@@ -19,10 +19,10 @@ To install the library, use npm or yarn:
 
 ```bash
 # Using npm
-npm install @artstorefronts/artstorefronts-ui
+npm install @artstorefronts/ui
 
 # Using yarn
-yarn add @artstorefronts/artstorefronts-ui
+yarn add @artstorefronts/ui
 ```
 
 ### Install Tailwind CSS
@@ -34,7 +34,7 @@ You must also have Tailwind CSS installed in your project. If you don't have it 
 Once the library is installed, you can start using the components in your project. Here's an example of how to use a component:
 
 ```javascript
-import { Button } from '@artstorefronts/artstorefronts-ui';
+import { Button } from '@artstorefronts/ui';
 
 const App = () => (
   <div className="container mx-auto">

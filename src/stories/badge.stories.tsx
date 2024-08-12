@@ -10,6 +10,7 @@ export default {
       options: ['default', 'secondary', 'destructive', 'outline'],
     },
   },
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn<BadgeProps> = (args) => <Badge {...args}>Badge Text</Badge>;

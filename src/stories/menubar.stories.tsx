@@ -32,6 +32,7 @@ export default {
     MenubarSubTrigger,
     MenubarTrigger,
   },
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn = (args) => (
@@ -91,9 +92,7 @@ const Template: StoryFn = (args) => (
       <MenubarTrigger>View</MenubarTrigger>
       <MenubarContent>
         <MenubarCheckboxItem>Always Show Bookmarks Bar</MenubarCheckboxItem>
-        <MenubarCheckboxItem checked>
-          Always Show Full URLs
-        </MenubarCheckboxItem>
+        <MenubarCheckboxItem checked>Always Show Full URLs</MenubarCheckboxItem>
         <MenubarSeparator />
         <MenubarItem inset>
           Reload <MenubarShortcut>⌘R</MenubarShortcut>

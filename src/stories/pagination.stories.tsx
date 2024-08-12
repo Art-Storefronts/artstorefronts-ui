@@ -21,6 +21,7 @@ export default {
     PaginationNext,
     PaginationPrevious,
   },
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn = (args) => (

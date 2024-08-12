@@ -14,6 +14,7 @@ export default {
     InputOTPSeparator,
     InputOTPSlot,
   },
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn = () => (
@@ -33,5 +34,4 @@ const Template: StoryFn = () => (
 );
 
 export const Default = Template.bind({});
-Default.args = {
-};
+Default.args = {};

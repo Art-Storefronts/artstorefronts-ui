@@ -10,6 +10,7 @@ export default {
       defaultValue: true,
     },
   },
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn<CalendarProps> = (args) => <Calendar {...args} />;

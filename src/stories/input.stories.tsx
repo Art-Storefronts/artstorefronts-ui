@@ -1,9 +1,10 @@
-import { Meta, StoryFn } from "@storybook/react";
-import { Input } from "@/components/ui/input";
+import { Meta, StoryFn } from '@storybook/react';
+import { Input } from '@/components/ui/input';
 
 export default {
-  title: "Components/Input",
+  title: 'Components/Input',
   component: Input,
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn = (args) => (
@@ -14,6 +15,6 @@ const Template: StoryFn = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  type: "email",
-  placeholder: "Email",
+  type: 'email',
+  placeholder: 'Email',
 };

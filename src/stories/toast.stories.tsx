@@ -19,6 +19,7 @@ export default {
       control: 'text',
     },
   },
+  tags: ['autodocs'],
 } as Meta;
 
 interface ToastStoryProps {

@@ -18,6 +18,7 @@ export default {
       control: 'text',
     },
   },
+  tags: ['autodocs'],
 } as Meta;
 
 function Template(args: { defaultValue: string }) {

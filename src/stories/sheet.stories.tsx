@@ -29,6 +29,7 @@ export default {
       options: ['left', 'right', 'top', 'bottom'],
     },
   },
+  tags: ['autodocs'],
 } as Meta;
 
 // Define the template for your component's stories

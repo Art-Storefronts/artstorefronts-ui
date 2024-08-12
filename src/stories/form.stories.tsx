@@ -32,6 +32,7 @@ export default {
     FormLabel,
     FormMessage,
   },
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn = (args) => {

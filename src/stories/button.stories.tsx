@@ -1,7 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { Button, ButtonProps } from '@/components/ui/button';
 import { Github, Loader } from 'lucide-react';
-import { StoryWrapper } from '@/lib/storywrapper';
 
 export default {
   title: 'Components/Button',
@@ -19,13 +18,10 @@ export default {
     disabled: { control: 'boolean' },
     isLoading: { control: 'boolean' },
   },
+  tags: ['autodocs'],
 } as Meta;
 
-const Template: StoryFn<ButtonProps> = (args) => (
-  <StoryWrapper>
-    <Button {...args} />
-  </StoryWrapper>
-);
+const Template: StoryFn<ButtonProps> = (args) => <Button {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

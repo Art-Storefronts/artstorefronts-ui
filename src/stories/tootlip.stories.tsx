@@ -17,6 +17,7 @@ export default {
       description: 'Placement of the tooltip relative to the target element',
     },
   },
+  tags: ['autodocs'],
 } as Meta;
 
 interface TooltipStoryProps {
@@ -24,20 +25,14 @@ interface TooltipStoryProps {
   side: 'top' | 'right' | 'bottom' | 'left';
 }
 
-function StoryWrapper({ children }: { children: React.ReactNode }) {
-  return <div className="flex justify-center items-center h-screen">{children}</div>;
-}
-
 function Template({ content, side }: TooltipStoryProps) {
   return (
-    <StoryWrapper>
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger>Hover me</TooltipTrigger>
-          <TooltipContent side={side}>{content}</TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
-    </StoryWrapper>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>Hover me</TooltipTrigger>
+        <TooltipContent side={side}>{content}</TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 }
 

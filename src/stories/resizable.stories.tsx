@@ -14,6 +14,7 @@ const meta: Meta<typeof ResizablePanelGroup> = {
       description: 'CSS classes to apply to the ResizablePanelGroup container.',
     },
   },
+  tags: ['autodocs'],
 };
 
 export default meta;

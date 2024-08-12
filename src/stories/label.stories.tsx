@@ -5,6 +5,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 export default {
   title: 'Components/Label',
   component: Label,
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn = (args) => (

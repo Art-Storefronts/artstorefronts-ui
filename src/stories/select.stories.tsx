@@ -26,6 +26,7 @@ const meta: Meta<typeof Select> = {
       </div>
     ),
   ],
+  tags: ['autodocs'],
 };
 
 export default meta;

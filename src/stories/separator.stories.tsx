@@ -20,6 +20,7 @@ export default {
       description: 'Whether the separator is purely decorative.',
     },
   },
+  tags: ['autodocs'],
 } as Meta;
 
 function HorizontalTemplate({ orientation, decorative }: SeparatorProps) {

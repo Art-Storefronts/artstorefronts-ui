@@ -34,6 +34,7 @@ const meta: Meta<typeof Table> = {
       description: 'CSS classes to apply to the Table container.',
     },
   },
+  tags: ['autodocs'],
 };
 
 export default meta;
