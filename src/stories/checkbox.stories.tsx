@@ -12,13 +12,13 @@ export default {
       control: 'boolean',
     },
   },
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn = (args) => <Checkbox {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {
-};
+Default.args = {};
 
 export const Checked = Template.bind({});
 Checked.args = {

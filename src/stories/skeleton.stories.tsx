@@ -6,6 +6,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 export default {
   title: 'Components/Skeleton',
   component: Skeleton,
+  tags: ['autodocs'],
 } as Meta;
 
 export const User: StoryFn = () => {

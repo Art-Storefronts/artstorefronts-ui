@@ -11,6 +11,7 @@ export default {
       options: ['default', 'destructive'],
     },
   },
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn = (args) => (

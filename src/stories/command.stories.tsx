@@ -9,14 +9,7 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from '@/components/ui/command';
-import {
-  Calculator,
-  Calendar,
-  CreditCard,
-  Settings,
-  Smile,
-  User,
-} from 'lucide-react';
+import { Calculator, Calendar, CreditCard, Settings, Smile, User } from 'lucide-react';
 
 export default {
   title: 'Components/Command',
@@ -30,6 +23,7 @@ export default {
     CommandSeparator,
     CommandShortcut,
   },
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn = (args) => (

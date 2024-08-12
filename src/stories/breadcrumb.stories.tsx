@@ -20,6 +20,7 @@ export default {
     BreadcrumbSeparator,
     BreadcrumbEllipsis,
   },
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn = (args) => (
@@ -46,7 +47,6 @@ const Template: StoryFn = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {};
-
 
 export const WithCustomClassNames = Template.bind({});
 WithCustomClassNames.args = {

@@ -1,11 +1,11 @@
-import { Meta, StoryFn } from "@storybook/react";
-import * as React from "react";
-import { Progress } from "@/components/ui/progress";
-import { StoryWrapper } from "@/lib/storywrapper";
+import { Meta, StoryFn } from '@storybook/react';
+import * as React from 'react';
+import { Progress } from '@/components/ui/progress';
 
 export default {
-  title: "Components/Progress",
+  title: 'Components/Progress',
   component: Progress,
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn = (args) => {
@@ -17,9 +17,9 @@ const Template: StoryFn = (args) => {
   }, []);
 
   return (
-    <StoryWrapper>
-      <Progress {...args} value={progress} className="w-[60%]" />
-    </StoryWrapper>
+    <div className="w-72 h-48">
+      <Progress {...args} value={progress} />
+    </div>
   );
 };
 

@@ -24,6 +24,7 @@ const meta: Meta<typeof RadioGroup> = {
       </div>
     ),
   ],
+  tags: ['autodocs'],
 };
 
 export default meta;

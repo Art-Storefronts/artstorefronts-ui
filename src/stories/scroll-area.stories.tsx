@@ -20,6 +20,7 @@ const meta: Meta<typeof ScrollArea> = {
       </div>
     ),
   ],
+  tags: ['autodocs'],
 };
 
 export default meta;

@@ -12,6 +12,7 @@ export default {
   title: 'Components/Card',
   component: Card,
   subcomponents: { CardHeader, CardFooter, CardTitle, CardDescription, CardContent },
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn = (args) => (
@@ -31,8 +32,6 @@ const Template: StoryFn = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {};
-
-
 
 export const WithCustomStyles = Template.bind({});
 WithCustomStyles.args = {

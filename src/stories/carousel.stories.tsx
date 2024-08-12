@@ -6,10 +6,7 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from '@/components/ui/carousel';
-import {
-  Card,
-  CardContent,
-} from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 
 export default {
   title: 'Components/Carousel',
@@ -26,13 +23,14 @@ export default {
       options: ['horizontal', 'vertical'],
     },
   },
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn = (args) => {
   return (
     <Carousel {...args}>
       <CarouselContent>
-      {Array.from({ length: 5 }).map((_, index) => (
+        {Array.from({ length: 5 }).map((_, index) => (
           <CarouselItem key={index}>
             <div className="p-1">
               <Card>
@@ -54,4 +52,3 @@ export const Default = Template.bind({});
 Default.args = {
   orientation: 'horizontal',
 };
-

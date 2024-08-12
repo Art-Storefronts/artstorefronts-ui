@@ -32,6 +32,7 @@ export default {
     ContextMenuSubContent,
     ContextMenuSubTrigger,
   },
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn = (args) => (
@@ -77,9 +78,7 @@ const Template: StoryFn = (args) => (
       <ContextMenuRadioGroup value="pedro">
         <ContextMenuLabel inset>People</ContextMenuLabel>
         <ContextMenuSeparator />
-        <ContextMenuRadioItem value="pedro">
-          Pedro Duarte
-        </ContextMenuRadioItem>
+        <ContextMenuRadioItem value="pedro">Pedro Duarte</ContextMenuRadioItem>
         <ContextMenuRadioItem value="colm">Colm Tuite</ContextMenuRadioItem>
       </ContextMenuRadioGroup>
     </ContextMenuContent>

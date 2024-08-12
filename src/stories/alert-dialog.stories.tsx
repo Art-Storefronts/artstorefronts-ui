@@ -25,6 +25,7 @@ export default {
     AlertDialogAction,
     AlertDialogCancel,
   },
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn = (args) => (

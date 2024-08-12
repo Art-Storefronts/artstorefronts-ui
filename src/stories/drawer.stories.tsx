@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Meta, StoryFn } from "@storybook/react";
-import { Minus, Plus } from "lucide-react";
-import { Bar, BarChart, ResponsiveContainer } from "recharts";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react';
+import { Meta, StoryFn } from '@storybook/react';
+import { Minus, Plus } from 'lucide-react';
+import { Bar, BarChart, ResponsiveContainer } from 'recharts';
+import { Button } from '@/components/ui/button';
 import {
   Drawer,
   DrawerClose,
@@ -12,7 +12,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/drawer";
+} from '@/components/ui/drawer';
 
 const data = [
   { goal: 400 },
@@ -31,7 +31,7 @@ const data = [
 ];
 
 export default {
-  title: "Components/Drawer",
+  title: 'Components/Drawer',
   component: Drawer,
   subcomponents: {
     DrawerTrigger,
@@ -42,6 +42,7 @@ export default {
     DrawerTitle,
     DrawerClose,
   },
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn = (args) => {
@@ -75,12 +76,8 @@ const Template: StoryFn = (args) => {
                 <span className="sr-only">Decrease</span>
               </Button>
               <div className="flex-1 text-center">
-                <div className="text-7xl font-bold tracking-tighter">
-                  {goal}
-                </div>
-                <div className="text-[0.70rem] uppercase text-muted-foreground">
-                  Calories/day
-                </div>
+                <div className="text-7xl font-bold tracking-tighter">{goal}</div>
+                <div className="text-[0.70rem] uppercase text-muted-foreground">Calories/day</div>
               </div>
               <Button
                 variant="outline"
@@ -100,7 +97,7 @@ const Template: StoryFn = (args) => {
                     dataKey="goal"
                     style={
                       {
-                        fill: "hsl(var(--foreground))",
+                        fill: 'hsl(var(--foreground))',
                         opacity: 0.9,
                       } as React.CSSProperties
                     }

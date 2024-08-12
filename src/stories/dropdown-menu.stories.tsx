@@ -47,6 +47,7 @@ export default {
     DropdownMenuSubContent,
     DropdownMenuSubTrigger,
   },
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn = (args) => (

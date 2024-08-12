@@ -18,6 +18,7 @@ export default {
       control: 'boolean',
     },
   },
+  tags: ['autodocs'],
 } as Meta;
 
 // Define the template for your component's stories

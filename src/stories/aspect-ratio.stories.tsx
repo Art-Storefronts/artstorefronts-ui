@@ -11,6 +11,7 @@ export default {
       description: 'The aspect ratio of the container (width/height).',
     },
   },
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn<{ ratio: number }> = (args) => (

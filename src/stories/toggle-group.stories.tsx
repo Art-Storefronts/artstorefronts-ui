@@ -22,6 +22,7 @@ export default {
     },
     disabled: { control: 'boolean' },
   },
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn<typeof ToggleGroup> = (args) => (
