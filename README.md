@@ -85,8 +85,6 @@ export default App;
   - A modal window that overlays on top of the main content, usually for user interaction.
 - **Dropdown Menu**
   - A toggleable menu that provides a list of options.
-- **Form**
-  - A set of controls to collect and validate user input.
 - **Hover Card**
   - A floating card that appears when hovering over an element.
 - **Input**
