@@ -1,8 +1,8 @@
 <p align="center" width="100%">
-  <img src="docs/asf-logo.png" />
+  <img src="https://i.imgur.com/p53fPWg.png" />
 </p>
 
-# artstorefronts-ui
+# @artstorefronts/ui
 
 A collection of customizable React components built with TypeScript, Tailwind CSS, and Storybook. The components have been designed to be lightweight and easy to integrate into React projects.
 
