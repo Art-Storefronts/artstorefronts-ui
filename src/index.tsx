@@ -151,17 +151,6 @@ export {
   DropdownMenuRadioGroup,
 } from '@/components/ui/dropdown-menu';
 
-export {
-  useFormField,
-  Form,
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormDescription,
-  FormMessage,
-  FormField,
-} from '@/components/ui/form';
-
 export { HoverCard, HoverCardTrigger, HoverCardContent } from '@/components/ui/hover-card';
 
 export {
