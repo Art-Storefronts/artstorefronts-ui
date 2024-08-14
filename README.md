@@ -25,6 +25,14 @@ npm install @artstorefronts/ui
 yarn add @artstorefronts/ui
 ```
 
+## Import CSS
+
+Add the following import to your project (usually in index.tsx or App.tsx):
+
+```
+import '@artstorefronts/ui/dist/index.css';
+```
+
 ### Install Tailwind CSS
 
 You must also have Tailwind CSS installed in your project. If you don't have it yet, you can install it by following these [these instructions](https://tailwindcss.com/docs/installation).
