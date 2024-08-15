@@ -144,6 +144,26 @@ For a live demonstration and interactive documentation of the components, check 
 
 The components are based on [Shadcn](https://ui.shadcn.com). For detailed documentation and usage examples of the original components, please visit the [Shadcn documentation](https://ui.shadcn.com/docs).
 
+## Development
+
+### Add new components
+
+1. Create a component in the `src/components/ui` directory
+   - Name the component something like `component.tsx`
+2. Create a Storybook story in the `src/stories` directory
+   - Name the story something like `component.stories.tsx`
+
+### Update existing components
+
+1. Modify the component
+2. Create/update existing Storybook stories to include the new functionality
+
+### Run Storybook
+
+To run Storybook and view your new component:
+
+1. Run `yarn storybook`
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE.md) file for more details.
