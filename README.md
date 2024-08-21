@@ -42,7 +42,7 @@ You must also have Tailwind CSS installed in your project. If you don't have it 
 Once the library is installed, you can start using the components in your project. Here's an example of how to use a component:
 
 ```javascript
-import { Button } from '@artstorefronts/ui';
+import { Button } from "@artstorefronts/ui";
 
 const App = () => (
   <div className="container mx-auto">
@@ -103,6 +103,8 @@ export default App;
   - A visual representation of a task's progress.
 - **Radio Group**
   - A set of related radio buttons, where only one option can be selected at a time.
+- **Rating**
+  - A clickable star rating component for selecting and displaying ratings from 1 to 5.
 - **Scroll Area**
   - A container that allows content to be scrollable if it exceeds the visible area.
 - **Select**
