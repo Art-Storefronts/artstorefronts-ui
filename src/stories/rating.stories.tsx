@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react";
-import Rating from "@/components/ui/rating";
+import { Rating } from "@/components/ui/rating";
 
 type RatingProps = React.ComponentProps<typeof Rating>;
 
