@@ -19,8 +19,13 @@ const Rating: React.FC<RatingProps> = ({
   }, [initialRating]);
 
   const handleRating = (index: number) => {
-    setRating(index);
-    onRatingChange(index);
+    if (rating === index) {
+      setRating(0);
+      onRatingChange(0);
+    } else {
+      setRating(index);
+      onRatingChange(index);
+    }
   };
 
   return (
