@@ -47,7 +47,10 @@ export const MultiSelectPills: React.FC<MultiSelectPillsProps> = ({
           key={option}
           variant={getOptionVariant(option)}
           className="rounded-full text-xs h-8"
-          onClick={() => handleOptionClick(option)}
+          onClick={(e) => {
+            e.preventDefault();
+            handleOptionClick(option);
+          }}
           disabled={
             !selectedOptions.includes(option) &&
             selectedOptions.length >= maxSelected
