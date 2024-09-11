@@ -309,3 +309,5 @@ export {
 export { useToast, toast } from "@/components/ui/use-toast";
 
 export { Rating } from "@/components/ui/rating";
+
+export { MultiSelectPills } from "@/components/ui/multi-select-pills";
