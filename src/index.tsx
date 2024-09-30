@@ -315,3 +315,5 @@ export { MultiSelectPills } from "@/components/ui/multi-select-pills";
 export { CloseButton } from "@/components/ui/close-button";
 
 export { FeatureButton } from "@/components/ui/feature-button";
+
+export { TagInput } from "@/components/ui/tag-input";
