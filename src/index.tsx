@@ -319,3 +319,5 @@ export { FeatureButton } from "@/components/ui/feature-button";
 export { TagInput } from "@/components/ui/tag-input";
 
 export { SearchInput } from "@/components/ui/search-input";
+
+export { SonnerToaster } from "@/components/ui/sonner";
