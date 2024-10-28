@@ -321,3 +321,5 @@ export { TagInput } from "@/components/ui/tag-input";
 export { SearchInput } from "@/components/ui/search-input";
 
 export { SonnerToaster } from "@/components/ui/sonner";
+
+export { InfiniteLikes } from "@/components/ui/infinite-likes";

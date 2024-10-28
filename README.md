@@ -12,6 +12,7 @@ Before installing and using this library, ensure that your project meets the fol
 
 - React: Version 17.0 or higher
 - Tailwind CSS: Version 3.0 or higher
+- Framer Motion: Version 11.0 or higher
 
 ## Installation
 
@@ -19,10 +20,10 @@ To install the library, use npm or yarn:
 
 ```bash
 # Using npm
-npm install @artstorefronts/ui
+npm install @artstorefronts/ui framer-motion
 
 # Using yarn
-yarn add @artstorefronts/ui
+yarn add @artstorefronts/ui framer-motion
 ```
 
 ## Import CSS

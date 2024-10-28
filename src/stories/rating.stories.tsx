@@ -14,8 +14,13 @@ export default {
   },
   argTypes: {
     rating: {
-      control: "number",
-      description: "Initial rating to be displayed",
+      control: { 
+        type: "number",
+        min: 0,
+        max: 10,
+        step: 0.5
+      },
+      description: "Initial rating (0-10) to be displayed as 0-5 stars",
     },
     disabled: {
       control: "boolean",
@@ -28,23 +33,27 @@ export default {
 
 const Template: StoryFn<RatingProps> = (args) => <Rating {...args} />;
 
-export const Default: StoryFn<RatingProps> = Template.bind({});
+export const Default = Template.bind({});
 Default.args = {};
 
-export const WithInitialRating: StoryFn<RatingProps> = Template.bind({});
+export const WithInitialRating = Template.bind({});
 WithInitialRating.args = {
-  rating: 3,
+  rating: 7,  // Will show 3.5 stars
 };
 
-export const Interactive: StoryFn<RatingProps> = Template.bind({});
+export const WithHalfStar = Template.bind({});
+WithHalfStar.args = {
+  rating: 3,  // Will show 1.5 stars
+};
+
+export const Interactive = Template.bind({});
 Interactive.args = {
   onRatingChange: (rating: number) =>
-    alert(`You selected a rating of ${rating}`),
+    alert(`You selected a rating of ${rating}/10`),
 };
 
-export const Disabled: StoryFn<RatingProps> = Template.bind({});
+export const Disabled = Template.bind({});
 Disabled.args = {
-  onRatingChange: () => {},
   disabled: true,
-  rating: 4,
+  rating: 8,  // Will show 4 stars
 };
