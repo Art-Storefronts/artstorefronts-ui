@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { SearchIcon } from "lucide-react";
 
+import { cn } from "@/lib/utils";
+
 interface SearchInputProps {
   value: string;
   onSubmit: (value: string) => void;
   onChange: (value: string) => void;
+  className?: string;
 }
 
 const SearchInput: React.FC<SearchInputProps> = ({
   value,
   onSubmit,
   onChange,
+  className,
 }) => {
   const [inputValue, setInputValue] = useState(value);
 
@@ -39,7 +43,10 @@ const SearchInput: React.FC<SearchInputProps> = ({
           placeholder="Search"
           value={inputValue}
           onChange={handleChange}
-          className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-black"
+          className={cn(
+            "w-full pl-10 pr-3 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-black",
+            className
+          )}
         />
         <button type="submit" className="hidden">
           Search

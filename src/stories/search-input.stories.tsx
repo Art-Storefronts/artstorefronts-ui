@@ -27,3 +27,8 @@ export const Default = Template.bind({});
 Default.args = {
   onSubmit: action("Search submitted"),
 };
+
+export const CustomClassName = Template.bind({});
+CustomClassName.args = {
+  className: "rounded-none focus:ring-blue-500",
+};
