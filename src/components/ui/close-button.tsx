@@ -1,13 +1,15 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { XIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export interface CloseButtonProps {
   size: "sm" | "md" | "lg";
   onClick?: () => void;
+  color?: string;
 }
 
-const CloseButton: React.FC<CloseButtonProps> = ({ size, onClick }) => {
+const CloseButton: React.FC<CloseButtonProps> = ({ size, onClick, color }) => {
   const getSize = (size: CloseButtonProps["size"]) => {
     switch (size) {
       case "sm":
@@ -25,9 +27,13 @@ const CloseButton: React.FC<CloseButtonProps> = ({ size, onClick }) => {
     <Button
       variant="ghost"
       onClick={onClick}
-      className={`p-0 rounded-none w-auto h-auto`}
+      className={cn(`p-0 rounded-none w-auto h-auto`)}
     >
-      <XIcon size={`${getSize(size)}px`} color="black" className="m-1" />
+      <XIcon
+        size={`${getSize(size)}px`}
+        color={color || "black"}
+        className="m-1"
+      />
     </Button>
   );
 };

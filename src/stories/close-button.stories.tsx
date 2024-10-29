@@ -31,3 +31,9 @@ export const Large = Template.bind({});
 Large.args = {
   size: "lg",
 };
+
+export const CustomColor = Template.bind({});
+CustomColor.args = {
+  size: "lg",
+  color: "red",
+};
