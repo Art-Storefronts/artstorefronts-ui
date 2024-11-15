@@ -12,7 +12,8 @@ const TagInput = forwardRef<HTMLDivElement, TagInputProps>(
   ({ selectedTags, onAddTag, onRemoveTag }, ref) => {
     const [inputValue, setInputValue] = useState("");
 
-    const handleAddTag = () => {
+    const handleAddTag = (e?: React.MouseEvent<HTMLButtonElement>) => {
+      e?.preventDefault();
       if (inputValue.trim() !== "") {
         onAddTag(inputValue.trim().toLowerCase());
         setInputValue("");
@@ -36,7 +37,7 @@ const TagInput = forwardRef<HTMLDivElement, TagInputProps>(
             placeholder="Enter a tag name"
             className="flex-1 mr-2"
           />
-          <Button onClick={handleAddTag}>Add</Button>
+          <Button onClick={(e) => handleAddTag(e)}>Add</Button>
         </div>
         <div className="flex flex-wrap mt-4">
           {selectedTags.map((tag, index) => (
