@@ -24,6 +24,8 @@ export const MultiSelectPills: React.FC<MultiSelectPillsProps> = ({
         updatedOptions = selectedOptions.filter((t) => t !== option);
       } else if (selectedOptions.length < maxSelected) {
         updatedOptions = [...selectedOptions, option];
+      } else if (selectedOptions.length >= maxSelected) {
+        updatedOptions = [...selectedOptions.slice(1), option];
       } else {
         return;
       }
@@ -51,10 +53,6 @@ export const MultiSelectPills: React.FC<MultiSelectPillsProps> = ({
             e.preventDefault();
             handleOptionClick(option);
           }}
-          disabled={
-            !selectedOptions.includes(option) &&
-            selectedOptions.length >= maxSelected
-          }
         >
           {option}
         </Button>
