@@ -1,5 +1,5 @@
-import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import React from "react";
+import { Meta, StoryFn } from "@storybook/react";
 import {
   Sheet,
   SheetClose,
@@ -9,38 +9,47 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '@/components/ui/sheet';
-import { Button } from '@/components/ui/button';
+} from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import { CircleXIcon } from "lucide-react";
 
 type StoryProps = {
-  side: 'left' | 'right' | 'top' | 'bottom';
+  side: "left" | "right" | "top" | "bottom";
+  closeIcon: React.ReactNode;
 };
 
 // Set up metadata for the component
 export default {
-  title: 'Components/Sheet',
+  title: "Components/Sheet",
   component: Sheet,
   args: {
-    side: 'right',
+    side: "right",
+    closeIcon: "",
   },
   argTypes: {
     side: {
-      control: 'select',
-      options: ['left', 'right', 'top', 'bottom'],
+      control: "select",
+      options: ["left", "right", "top", "bottom"],
+    },
+    closeIcon: {
+      control: { type: "text" },
+      table: {
+        type: { summary: "ReactNode" },
+      },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 } as Meta;
 
 // Define the template for your component's stories
-function Template({ side }) {
+function Template({ side, closeIcon }: StoryProps) {
   return (
     <div className="grid grid-cols-2 gap-2">
       <Sheet key={side}>
         <SheetTrigger asChild>
           <Button variant="outline">{side.toUpperCase()}</Button>
         </SheetTrigger>
-        <SheetContent side={side}>
+        <SheetContent side={side} closeIcon={closeIcon}>
           <SheetHeader>
             <SheetTitle>Edit profile</SheetTitle>
             <SheetDescription>
@@ -74,20 +83,26 @@ function Template({ side }) {
 
 export const Left: StoryFn<StoryProps> = Template.bind({});
 Left.args = {
-  side: 'left',
+  side: "left",
 };
 
 export const Right: StoryFn<StoryProps> = Template.bind({});
 Right.args = {
-  side: 'right',
+  side: "right",
 };
 
 export const Top: StoryFn<StoryProps> = Template.bind({});
 Top.args = {
-  side: 'top',
+  side: "top",
 };
 
 export const Bottom: StoryFn<StoryProps> = Template.bind({});
 Bottom.args = {
-  side: 'bottom',
+  side: "bottom",
+};
+
+export const WithCustomCloseIcon: StoryFn<StoryProps> = Template.bind({});
+WithCustomCloseIcon.args = {
+  side: "right",
+  closeIcon: <CircleXIcon className="h-7 w-7 text-red-500" />,
 };
