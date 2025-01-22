@@ -44,7 +44,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
           value={inputValue}
           onChange={handleChange}
           className={cn(
-            "w-full pl-10 pr-3 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-black",
+            "w-full pl-10 pr-3 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2",
             className
           )}
         />
