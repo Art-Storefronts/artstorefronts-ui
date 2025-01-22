@@ -20,7 +20,9 @@ const FeatureButton: React.FC<FeatureButtonProps> = ({
     <Button
       variant={variant}
       onClick={onClick}
-      className={`w-full flex items-center justify-between rounded-none py-7 px-4 ${className || ""}`}
+      className={`w-full flex items-center justify-between rounded-full py-7 px-4 ${
+        className || ""
+      }`}
     >
       <div className="w-6 mx-2">{icon && icon}</div>
       <span className="text-lg font-bold">{text}</span>
