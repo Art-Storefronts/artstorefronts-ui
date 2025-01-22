@@ -27,7 +27,7 @@ const CloseButton: React.FC<CloseButtonProps> = ({ size, onClick, color }) => {
     <Button
       variant="ghost"
       onClick={onClick}
-      className={cn(`p-0 rounded-none w-auto h-auto`)}
+      className={cn(`p-0 rounded-md w-auto h-auto`)}
     >
       <XIcon
         size={`${getSize(size)}px`}
