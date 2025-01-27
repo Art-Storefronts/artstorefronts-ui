@@ -1,7 +1,6 @@
 import React, { useState, forwardRef } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 interface TagInputProps {
   selectedTags: string[];
@@ -17,7 +16,7 @@ const TagInput = forwardRef<HTMLDivElement, TagInputProps>(
     const handleAddTag = (e?: React.MouseEvent<HTMLButtonElement>) => {
       e?.preventDefault();
       if (inputValue.trim() !== "") {
-        onAddTag(inputValue.trim().toLowerCase());
+        onAddTag(inputValue.trim());
         setInputValue("");
       }
     };
