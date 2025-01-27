@@ -1,15 +1,17 @@
 import React, { useState, forwardRef } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface TagInputProps {
   selectedTags: string[];
   onAddTag: (tag: string) => void;
   onRemoveTag: (tag: string) => void;
+  error?: React.ReactNode | string;
 }
 
 const TagInput = forwardRef<HTMLDivElement, TagInputProps>(
-  ({ selectedTags, onAddTag, onRemoveTag }, ref) => {
+  ({ selectedTags, onAddTag, onRemoveTag, error }, ref) => {
     const [inputValue, setInputValue] = useState("");
 
     const handleAddTag = (e?: React.MouseEvent<HTMLButtonElement>) => {
@@ -39,6 +41,12 @@ const TagInput = forwardRef<HTMLDivElement, TagInputProps>(
           />
           <Button onClick={(e) => handleAddTag(e)}>Add</Button>
         </div>
+        {error &&
+          (typeof error === "string" ? (
+            <div className="text-xs text-destructive mt-2">{error}</div>
+          ) : (
+            error
+          ))}
         <div className="flex flex-wrap mt-4">
           {selectedTags.map((tag, index) => (
             <div
