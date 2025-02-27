@@ -1,6 +1,6 @@
 {
   "name": "@artstorefronts/ui",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -17,6 +17,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@hookform/resolvers": "^4.1.2",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
     "@radix-ui/react-aspect-ratio": "^1.1.0",
@@ -27,7 +28,7 @@
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-dropdown-menu": "^2.1.1",
     "@radix-ui/react-hover-card": "^1.1.1",
-    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-label": "^2.1.2",
     "@radix-ui/react-menubar": "^1.1.1",
     "@radix-ui/react-navigation-menu": "^1.2.0",
     "@radix-ui/react-popover": "^1.1.1",
@@ -37,7 +38,7 @@
     "@radix-ui/react-select": "^2.1.1",
     "@radix-ui/react-separator": "^1.1.0",
     "@radix-ui/react-slider": "^1.2.0",
-    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-slot": "^1.1.2",
     "@radix-ui/react-switch": "^1.1.0",
     "@radix-ui/react-tabs": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.1",
@@ -61,6 +62,7 @@
     "lucide-react": "^0.426.0",
     "next-themes": "^0.3.0",
     "react-day-picker": "8.10.1",
+    "react-hook-form": "^7.54.2",
     "react-resizable-panels": "^2.0.23",
     "recharts": "^2.12.7",
     "sonner": "^1.5.0",
@@ -68,20 +70,20 @@
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.1",
     "web-vitals": "^2.1.0",
-    "zod": "^3.23.8"
+    "zod": "^3.24.2"
   },
   "peerDependencies": {
+    "framer-motion": "^11.0.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "framer-motion": "^11.0.0"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.22.11",
     "@chromatic-com/storybook": "^1.6.1",
     "@storybook/addon-essentials": "^8.2.8",
     "@storybook/addon-interactions": "^8.2.8",
     "@storybook/addon-links": "^8.2.8",
     "@storybook/addon-onboarding": "^8.2.8",
-    "@storybook/addons": "^7.6.17",
     "@storybook/blocks": "^8.2.8",
     "@storybook/preset-create-react-app": "^8.2.8",
     "@storybook/react": "^8.2.8",
