@@ -323,3 +323,13 @@ export { SearchInput } from "@/components/ui/search-input";
 export { SonnerToaster } from "@/components/ui/sonner";
 
 export { InfiniteLikes } from "@/components/ui/infinite-likes";
+
+export {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+} from "@/components/ui/form";
