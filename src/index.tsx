@@ -159,6 +159,7 @@ export {
   HoverCard,
   HoverCardTrigger,
   HoverCardContent,
+  HoverCardPortal,
 } from "@/components/ui/hover-card";
 
 export {
