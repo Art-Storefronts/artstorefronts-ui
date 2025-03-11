@@ -324,6 +324,34 @@ export function TimezoneSelector({
     }
   };
 
+  // Render a single timezone option
+  const renderTimezoneOption = (timezone: TimezoneInfo, index: number) => {
+    let bgClass = "";
+
+    if (focusedIndex === index) {
+      bgClass = "bg-gray-200";
+    } else if (value === timezone.value) {
+      bgClass = "bg-gray-100";
+    }
+
+    return (
+      <Button
+        key={timezone.value}
+        ref={(el) => (optionRefs.current[index] = el)}
+        variant="ghost"
+        className={`w-full justify-start text-left mb-1 ${bgClass} hover:bg-gray-200`}
+        onClick={() => handleTimezoneChange(timezone.value)}
+        onMouseEnter={() => setFocusedIndex(index)}
+        tabIndex={-1}
+      >
+        <div className="flex flex-col w-full">
+          <span>{timezone.label}</span>
+          <span className="text-xs text-gray-500">{timezone.offset}</span>
+        </div>
+      </Button>
+    );
+  };
+
   return (
     <div className={className}>
       <Popover open={isOpen} onOpenChange={handleOpenChange}>
@@ -351,37 +379,9 @@ export function TimezoneSelector({
                   No timezones found
                 </div>
               ) : (
-                filteredTimezones.map((timezone, index) => {
-                  // Determine the background class based on state
-                  let bgClass = "";
-
-                  if (focusedIndex === index) {
-                    // Focused state takes priority
-                    bgClass = "bg-gray-200";
-                  } else if (value === timezone.value) {
-                    // Selected state is next priority
-                    bgClass = "bg-gray-100";
-                  }
-
-                  return (
-                    <Button
-                      key={timezone.value}
-                      ref={(el) => (optionRefs.current[index] = el)}
-                      variant="ghost"
-                      className={`w-full justify-start text-left mb-1 ${bgClass} hover:bg-gray-200`}
-                      onClick={() => handleTimezoneChange(timezone.value)}
-                      onMouseEnter={() => setFocusedIndex(index)}
-                      tabIndex={-1}
-                    >
-                      <div className="flex flex-col w-full">
-                        <span>{timezone.label}</span>
-                        <span className="text-xs text-gray-500">
-                          {timezone.offset}
-                        </span>
-                      </div>
-                    </Button>
-                  );
-                })
+                filteredTimezones.map((timezone, index) =>
+                  renderTimezoneOption(timezone, index)
+                )
               )}
               <div className="h-2"></div>
             </div>
