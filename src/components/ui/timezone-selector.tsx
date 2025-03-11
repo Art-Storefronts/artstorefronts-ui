@@ -7,7 +7,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Search, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 export const TIMEZONES = [
   // North America
@@ -287,11 +287,10 @@ export function TimezoneSelector({
             prevIndex + 1,
             filteredTimezones.length - 1
           );
-          // Scroll the focused item into view with additional padding
+          // Scroll the focused item into view
           setTimeout(() => {
             optionRefs.current[newIndex]?.scrollIntoView({
               block: "nearest",
-              // This ensures some space around the element
               behavior: "smooth",
             });
           }, 0);
@@ -302,11 +301,10 @@ export function TimezoneSelector({
         e.preventDefault();
         setFocusedIndex((prevIndex) => {
           const newIndex = Math.max(prevIndex - 1, 0);
-          // Scroll the focused item into view with additional padding
+          // Scroll the focused item into view
           setTimeout(() => {
             optionRefs.current[newIndex]?.scrollIntoView({
               block: "nearest",
-              // This ensures some space around the element
               behavior: "smooth",
             });
           }, 0);
