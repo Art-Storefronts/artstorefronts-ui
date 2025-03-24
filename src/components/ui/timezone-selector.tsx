@@ -363,9 +363,13 @@ export function TimezoneSelector({
               value={inputValue}
               onChange={handleInputChange}
               onKeyDown={handleKeyDown}
-              className="pr-10"
+              className="pr-10 cursor-pointer"
             />
-            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" />
+            <ChevronDown
+              className={`absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none transition-transform duration-200 ${
+                isOpen ? "transform rotate-180" : ""
+              }`}
+            />
           </div>
         </PopoverTrigger>
         <PopoverContent
