@@ -104,7 +104,7 @@ const ColorPicker = React.forwardRef<HTMLButtonElement, ColorPickerProps>(
             )}
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-full">
+        <PopoverContent className="w-full" side="top">
           <HexColorPicker color={parsedValue} onChange={onChange} />
           {showHexInput && (
             <Input
