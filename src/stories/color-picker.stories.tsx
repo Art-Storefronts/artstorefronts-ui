@@ -1,6 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import { ColorPicker } from "@/components/ui/color-picker";
+import {
+  Paintbrush,
+  Palette,
+  PaintBucket as ColorPickerIcon,
+} from "lucide-react";
 
 const meta: Meta<typeof ColorPicker> = {
   title: "Components/ColorPicker",
@@ -20,20 +25,6 @@ export const Default: Story = {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [color, setColor] = useState("#FF5733");
     return <ColorPicker value={color} onChange={setColor} />;
-  },
-};
-
-// Story showing different initial colors
-export const DifferentColors: Story = {
-  render: () => {
-    return (
-      <div className="flex gap-4">
-        <ColorPicker value="#FF0000" onChange={() => {}} />
-        <ColorPicker value="#00FF00" onChange={() => {}} />
-        <ColorPicker value="#0000FF" onChange={() => {}} />
-        <ColorPicker value="#FFFF00" onChange={() => {}} />
-      </div>
-    );
   },
 };
 
@@ -84,25 +75,14 @@ export const WithBlurHandler: Story = {
   },
 };
 
-export const HexInputVariants: Story = {
+export const WithoutHexInput: Story = {
   render: () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [color1, setColor1] = useState("#FF5733");
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [color2, setColor2] = useState("#4287f5");
 
     return (
       <div className="flex gap-8 items-start">
         <div className="text-center">
-          <p className="mb-4 text-sm text-gray-500">With Hex Input (Default)</p>
-          <ColorPicker
-            value={color1}
-            onChange={setColor1}
-            showHexInput={true}
-          />
-        </div>
-        <div className="text-center">
-          <p className="mb-4 text-sm text-gray-500">Without Hex Input</p>
           <ColorPicker
             value={color2}
             onChange={setColor2}
@@ -116,38 +96,80 @@ export const HexInputVariants: Story = {
 
 export const CustomButtonStyles: Story = {
   render: () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [color1, setColor1] = useState("#FF5733");
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [color2, setColor2] = useState("#4287f5");
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [color3, setColor3] = useState("#2ecc71");
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [color4, setColor4] = useState("#e74c3c");
+
     return (
       <div className="flex gap-6 items-center">
         <div className="text-center">
-          <p className="mb-4 text-sm text-gray-500">Rounded</p>
           <ColorPicker
-            value="#FF5733"
-            onChange={() => {}}
+            value={color1}
+            onChange={setColor1}
             className="h-10 w-10 rounded-full"
           />
         </div>
         <div className="text-center">
-          <p className="mb-4 text-sm text-gray-500">Square</p>
           <ColorPicker
-            value="#4287f5"
-            onChange={() => {}}
+            value={color2}
+            onChange={setColor2}
             className="h-10 w-10 rounded-none"
           />
         </div>
         <div className="text-center">
-          <p className="mb-4 text-sm text-gray-500">Large Rounded</p>
           <ColorPicker
-            value="#2ecc71"
-            onChange={() => {}}
+            value={color3}
+            onChange={setColor3}
             className="h-16 w-16 rounded-2xl border-2"
           />
         </div>
         <div className="text-center">
-          <p className="mb-4 text-sm text-gray-500">Custom Border</p>
           <ColorPicker
-            value="#e74c3c"
-            onChange={() => {}}
+            value={color4}
+            onChange={setColor4}
             className="h-12 w-12 rounded-xl border-2 border-gray-400 hover:border-gray-600 transition-colors"
+          />
+        </div>
+      </div>
+    );
+  },
+};
+
+export const WithIcons: Story = {
+  render: () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [color1, setColor1] = useState("#FF5733");
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [color2, setColor2] = useState("#4287f5");
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [color3, setColor3] = useState("#2ecc71");
+
+    return (
+      <div className="flex gap-4 items-center">
+        <div className="text-center">
+          <ColorPicker
+            value={color1}
+            onChange={setColor1}
+            icon={<Paintbrush className="h-4 w-4" />}
+          />
+        </div>
+        <div className="text-center">
+          <ColorPicker
+            value={color2}
+            onChange={setColor2}
+            icon={<Palette className="h-4 w-4" />}
+          />
+        </div>
+        <div className="text-center">
+          <ColorPicker
+            value={color3}
+            onChange={setColor3}
+            icon={<ColorPickerIcon className="h-4 w-4" />}
           />
         </div>
       </div>
