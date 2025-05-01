@@ -348,3 +348,6 @@ export {
   getTimezoneOffset,
   getUserTimezone,
 } from "@/lib/timezone";
+
+export { ColorPicker } from "@/components/ui/color-picker";
+export type { ColorPickerProps } from "@/components/ui/color-picker";
