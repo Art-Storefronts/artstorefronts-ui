@@ -19,6 +19,7 @@ export interface ColorPickerProps
   onBlur?: () => void;
   showHexInput?: boolean;
   icon?: React.ReactNode;
+  isNative?: boolean;
 }
 
 // Separate the base props to avoid circular reference
@@ -58,66 +59,89 @@ const ColorPicker = React.forwardRef<HTMLButtonElement, ColorPickerProps>(
       className,
       showHexInput = true,
       icon,
+      isNative = false,
       ...props
     },
     ref
   ) => {
     const [open, setOpen] = React.useState(false);
-
-    const parsedValue = React.useMemo(() => {
-      return value || "#FFFFFF";
-    }, [value]);
-
-    // Calculate if we should use dark or light text
+    const parsedValue = React.useMemo(() => value || "#FFFFFF", [value]);
     const iconColor = React.useMemo(() => {
       const luminance = getLuminance(parsedValue);
-      // Use white text for darker backgrounds (luminance < 0.5)
       return luminance < 0.5 ? "white" : "black";
     }, [parsedValue]);
 
     return (
-      <Popover onOpenChange={setOpen} open={open}>
-        <PopoverTrigger asChild disabled={disabled} onBlur={onBlur}>
-          <Button
-            {...props}
-            ref={ref}
-            className={cn("block", className)}
-            name={name}
-            onClick={() => {
-              setOpen(true);
-            }}
-            size="icon"
-            style={{
-              backgroundColor: parsedValue,
-            }}
-            variant="outline"
-          >
-            {icon ? (
-              <div
-                className="flex items-center justify-center w-full h-full"
-                style={{ color: iconColor }}
-              >
-                {icon}
-              </div>
-            ) : (
-              <div />
-            )}
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-full" side="top">
-          <HexColorPicker color={parsedValue} onChange={onChange} />
-          {showHexInput && (
-            <Input
-              maxLength={7}
-              onChange={(e) => {
-                onChange(e?.currentTarget?.value);
-              }}
+      <div className="relative inline-block">
+        {isNative ? (
+          <div className="relative">
+            <Button
+              {...props}
+              ref={ref}
+              className={cn("block", className)}
+              name={name}
+              size="icon"
+              style={{ backgroundColor: parsedValue }}
+              variant="outline"
+            >
+              {icon ? (
+                <div
+                  className="flex items-center justify-center w-full h-full"
+                  style={{ color: iconColor }}
+                >
+                  {icon}
+                </div>
+              ) : (
+                <div />
+              )}
+            </Button>
+            <input
+              type="color"
               value={parsedValue}
-              className="mt-2 h-8 px-2"
+              onChange={(e) => onChange(e.target.value)}
+              className="absolute inset-0 opacity-0 w-full h-full cursor-pointer focus:cursor-default"
             />
-          )}
-        </PopoverContent>
-      </Popover>
+          </div>
+        ) : (
+          <Popover onOpenChange={setOpen} open={open}>
+            <PopoverTrigger asChild disabled={disabled} onBlur={onBlur}>
+              <Button
+                {...props}
+                ref={ref}
+                className={cn("block", className)}
+                name={name}
+                size="icon"
+                style={{ backgroundColor: parsedValue }}
+                variant="outline"
+              >
+                {icon ? (
+                  <div
+                    className="flex items-center justify-center w-full h-full"
+                    style={{ color: iconColor }}
+                  >
+                    {icon}
+                  </div>
+                ) : (
+                  <div />
+                )}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-full" side="top">
+              <HexColorPicker color={parsedValue} onChange={onChange} />
+              {showHexInput && (
+                <Input
+                  maxLength={7}
+                  onChange={(e) => {
+                    onChange(e?.currentTarget?.value);
+                  }}
+                  value={parsedValue}
+                  className="mt-2 h-8 px-2"
+                />
+              )}
+            </PopoverContent>
+          </Popover>
+        )}
+      </div>
     );
   }
 );

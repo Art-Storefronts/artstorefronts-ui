@@ -176,3 +176,24 @@ export const WithIcons: Story = {
     );
   },
 };
+
+export const NativeColorPicker: Story = {
+  render: () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [color, setColor] = useState("#FF5733");
+
+    return (
+      <div className="flex gap-6 items-center">
+        <div className="text-center">
+          <ColorPicker
+            value={color}
+            onChange={setColor}
+            className="h-10 w-10 rounded-full"
+            isNative
+            icon={<ColorPickerIcon className="h-4 w-4" />}
+          />
+        </div>
+      </div>
+    );
+  },
+};
