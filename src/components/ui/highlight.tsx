@@ -72,28 +72,26 @@ const HighlightContent = React.forwardRef<
     },
     ref
   ) => (
-    <PopoverPrimitive.Portal>
-      <PopoverPrimitive.Content
-        ref={ref}
-        side={side}
-        sideOffset={sideOffset}
-        align="center"
-        onPointerDownOutside={(e) => e.preventDefault()}
-        hideWhenDetached
-        className={cn(
-          "z-50 rounded-md border px-3 py-1.5 text-sm shadow-md max-w-[400px] text-center",
-          variantStyles[variant],
-          bounce && side === "left" && "animate-bounce-right-to-left",
-          bounce && side === "right" && "animate-bounce-left-to-right",
-          bounce && (side === "top" || side === "bottom") && "animate-bounce",
-          className
-        )}
-        {...props}
-      >
-        {children}
-        {arrow && <PopoverPrimitive.Arrow className={arrowStyles[variant]} />}
-      </PopoverPrimitive.Content>
-    </PopoverPrimitive.Portal>
+    <PopoverPrimitive.Content
+      ref={ref}
+      side={side}
+      sideOffset={sideOffset}
+      align="center"
+      onPointerDownOutside={(e) => e.preventDefault()}
+      hideWhenDetached
+      className={cn(
+        "z-50 rounded-md border px-3 py-1.5 text-sm shadow-md max-w-[400px] text-center",
+        variantStyles[variant],
+        bounce && side === "left" && "animate-bounce-right-to-left",
+        bounce && side === "right" && "animate-bounce-left-to-right",
+        bounce && (side === "top" || side === "bottom") && "animate-bounce",
+        className
+      )}
+      {...props}
+    >
+      {children}
+      {arrow && <PopoverPrimitive.Arrow className={arrowStyles[variant]} />}
+    </PopoverPrimitive.Content>
   )
 );
 HighlightContent.displayName = "HighlightContent";

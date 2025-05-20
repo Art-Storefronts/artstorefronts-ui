@@ -4,7 +4,7 @@ import {
   HighlightContent,
   HighlightTrigger,
 } from "@/components/ui/highlight";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const meta: Meta<typeof Highlight> = {
   title: "Components/Highlight",
@@ -165,4 +165,54 @@ export const Variants: Story = {
       </Highlight>
     </div>
   ),
+};
+
+export const ScrollingTest: Story = {
+  render: () => {
+    return (
+      <div className="relative h-[600px] w-[400px] overflow-auto border border-gray-200">
+        {/* Fixed header that will overlap with scrolling content */}
+        <div className="sticky top-0 z-10 bg-white p-4 shadow-md">
+          <h2 className="text-lg font-bold">Fixed Header</h2>
+          <p className="text-sm text-gray-600">
+            Scroll down to see highlights hide behind this header
+          </p>
+        </div>
+
+        {/* Scrollable content with highlights */}
+        <div className="space-y-8 p-4">
+          <div className="relative h-[200px] bg-gray-50 p-4">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <Highlight open>
+                <Trigger>First Highlight</Trigger>
+                <HighlightContent>Hidden behind header</HighlightContent>
+              </Highlight>
+            </div>
+          </div>
+
+          <div className="relative h-[200px] bg-gray-50 p-4">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <Highlight open>
+                <Trigger>Second Highlight</Trigger>
+                <HighlightContent variant="info">
+                  Info highlight
+                </HighlightContent>
+              </Highlight>
+            </div>
+          </div>
+
+          <div className="relative h-[200px] bg-gray-50 p-4">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <Highlight open>
+                <Trigger>Third Highlight</Trigger>
+                <HighlightContent variant="success">
+                  Success highlight
+                </HighlightContent>
+              </Highlight>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  },
 };
