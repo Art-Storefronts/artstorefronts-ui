@@ -351,3 +351,9 @@ export {
 
 export { ColorPicker } from "@/components/ui/color-picker";
 export type { ColorPickerProps } from "@/components/ui/color-picker";
+
+export {
+  Highlight,
+  HighlightTrigger,
+  HighlightContent,
+} from "@/components/ui/highlight";
