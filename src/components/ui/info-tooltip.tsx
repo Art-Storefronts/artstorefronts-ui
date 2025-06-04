@@ -87,7 +87,7 @@ export const InfoTooltip: React.FC<InfoTooltipProps> = ({
           <span className="font-bold text-lg">{title}</span>
         </div>
         <div
-          className="text-sm text-black"
+          className="text-sm text-black [&>a]:text-blue-600"
           dangerouslySetInnerHTML={{ __html: text }}
         />
         <PopoverPrimitive.Arrow

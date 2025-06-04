@@ -21,7 +21,7 @@ export const Default: Story = {
   render: () => (
     <InfoTooltip
       title="Information"
-      text="This is where the tooltip content shows. This is where the tooltip content shows. This is where the tooltip content shows. Here is the <a href='https://www.google.com' style='color:blue;text-decoration:underline;'>link</a> to the service page."
+      text="This is where the tooltip content shows. This is where the tooltip content shows. This is where the tooltip content shows. Here is the <a href='https://www.google.com'>link</a> to the service page."
     />
   ),
 };
@@ -53,7 +53,7 @@ export const HtmlContent: Story = {
   render: () => (
     <InfoTooltip
       title="HTML Content"
-      text="<b>This is bold text.</b> <br/><i>This is italic text.</i> <br/><a href='https://example.com' target='_blank' style='color:blue;text-decoration:underline;'>External link</a>"
+      text="<b>This is bold text.</b> <br/><i>This is italic text.</i> <br/><a href='https://example.com' target='_blank'>External link</a>"
     />
   ),
 };
