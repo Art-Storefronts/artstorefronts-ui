@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { InfoTooltip } from "@/components/ui/info-tooltip";
+import { Button } from "@/components/ui/button";
 
 const meta: Meta<typeof InfoTooltip> = {
   title: "Components/InfoTooltip",
@@ -55,5 +56,16 @@ export const HtmlContent: Story = {
       title="HTML Content"
       text="<b>This is bold text.</b> <br/><i>This is italic text.</i> <br/><a href='https://example.com' target='_blank'>External link</a>"
     />
+  ),
+};
+
+export const InsideButton: Story = {
+  render: () => (
+    <Button onClick={() => alert("Button clicked")}>
+      <InfoTooltip
+        title="Information"
+        text="This is where the tooltip content shows. This is where the tooltip content shows. This is where the tooltip content shows. Here is the <a href='https://www.google.com'>link</a> to the service page."
+      />
+    </Button>
   ),
 };

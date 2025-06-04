@@ -57,12 +57,18 @@ export const InfoTooltip: React.FC<InfoTooltipProps> = ({
           type="button"
           onMouseEnter={() => setHoverTrigger(true)}
           onMouseLeave={() => setHoverTrigger(false)}
-          onClick={() => setOpen((v) => !v)}
-          onTouchStart={() => setOpen((v) => !v)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setOpen((v) => !v);
+          }}
+          onTouchStart={(e) => {
+            e.stopPropagation();
+            setOpen((v) => !v);
+          }}
           aria-label="Show info"
           className={cn(
             "flex items-center justify-center rounded-full bg-white text-blue-600 hover:bg-gray-100 focus:outline-none",
-            "transition-colors duration-150"
+            "transition-colors duration-150 z-[1000]"
           )}
           style={{ width: ICON_SIZES[size], height: ICON_SIZES[size] }}
         >
@@ -76,18 +82,20 @@ export const InfoTooltip: React.FC<InfoTooltipProps> = ({
         className={cn(
           "z-50 rounded-lg border border-gray-200 bg-white text-black shadow-md p-6 max-w-[500px] text-left",
           "flex flex-col gap-2",
-          "transition-all duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0 data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95"
+          "transition-all duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0 data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95",
+          "cursor-default"
         )}
         onMouseEnter={() => setHoverContent(true)}
         onMouseLeave={() => setHoverContent(false)}
         onOpenAutoFocus={(e) => e.preventDefault()}
+        onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-2 mb-2">
           <Info width={24} height={24} className="text-blue-600" />
           <span className="font-bold text-lg">{title}</span>
         </div>
         <div
-          className="text-sm text-black [&>a]:text-blue-600"
+          className="text-sm text-black break-words whitespace-normal [&>a]:text-blue-600 font-normal"
           dangerouslySetInnerHTML={{ __html: text }}
         />
         <PopoverPrimitive.Arrow
