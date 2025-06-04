@@ -7,7 +7,7 @@ const meta: Meta<typeof InfoTooltip> = {
   tags: ["autodocs"],
   decorators: [
     (Story) => (
-      <div className="flex min-h-[200px] items-center justify-center bg-gray-50 p-8">
+      <div className="flex min-h-[200px] items-center justify-center p-8">
         <Story />
       </div>
     ),
