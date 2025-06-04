@@ -32,9 +32,13 @@ export const InfoTooltip: React.FC<InfoTooltipProps> = ({
   const [hoverTrigger, setHoverTrigger] = React.useState(false);
   const [hoverContent, setHoverContent] = React.useState(false);
   const closeTimer = React.useRef<NodeJS.Timeout | null>(null);
+  const isTouchDevice =
+    typeof window !== "undefined" &&
+    window.matchMedia("(pointer: coarse)").matches;
 
-  // Open if hovering either
+  // Desktop: open if hovering trigger or content, close with delay if not
   React.useEffect(() => {
+    if (isTouchDevice) return;
     if (hoverTrigger || hoverContent) {
       if (closeTimer.current) {
         clearTimeout(closeTimer.current);
@@ -42,35 +46,41 @@ export const InfoTooltip: React.FC<InfoTooltipProps> = ({
       }
       setOpen(true);
     } else {
-      // Delay closing to allow moving between trigger/content
       closeTimer.current = setTimeout(() => setOpen(false), 120);
     }
     return () => {
       if (closeTimer.current) clearTimeout(closeTimer.current);
     };
-  }, [hoverTrigger, hoverContent]);
+  }, [hoverTrigger, hoverContent, isTouchDevice]);
+
+  // Mobile: only toggle on click
+  const triggerProps = isTouchDevice
+    ? {
+        onClick: (e: React.MouseEvent) => {
+          e.stopPropagation();
+          setOpen((v) => !v);
+        },
+        onTouchStart: (e: React.TouchEvent) => {
+          e.stopPropagation();
+        },
+      }
+    : {
+        onMouseEnter: () => setHoverTrigger(true),
+        onMouseLeave: () => setHoverTrigger(false),
+      };
 
   return (
     <PopoverPrimitive.Root open={open} onOpenChange={setOpen}>
       <PopoverPrimitive.Trigger asChild>
         <button
           type="button"
-          onMouseEnter={() => setHoverTrigger(true)}
-          onMouseLeave={() => setHoverTrigger(false)}
-          onClick={(e) => {
-            e.stopPropagation();
-            setOpen((v) => !v);
-          }}
-          onTouchStart={(e) => {
-            e.stopPropagation();
-            setOpen((v) => !v);
-          }}
           aria-label="Show info"
           className={cn(
             "flex items-center justify-center rounded-full bg-white text-blue-600 hover:bg-gray-100 focus:outline-none",
             "transition-colors duration-150 z-[1000]"
           )}
           style={{ width: ICON_SIZES[size], height: ICON_SIZES[size] }}
+          {...triggerProps}
         >
           <Info width={ICON_SIZES[size]} height={ICON_SIZES[size]} />
         </button>
@@ -80,16 +90,18 @@ export const InfoTooltip: React.FC<InfoTooltipProps> = ({
         sideOffset={sideOffset}
         align="center"
         className={cn(
-          "z-[1000] rounded-lg border border-gray-200 bg-white text-black shadow-md p-6 text-left",
+          "z-[9999] rounded-lg border border-gray-200 bg-white text-black shadow-md p-6 text-left",
           "flex flex-col gap-2",
           "transition-all duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0 data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95",
           "cursor-default",
           "w-[90vw] sm:max-w-[500px]"
         )}
-        onMouseEnter={() => setHoverContent(true)}
-        onMouseLeave={() => setHoverContent(false)}
         onOpenAutoFocus={(e) => e.preventDefault()}
         onClick={(e) => e.stopPropagation()}
+        {...(!isTouchDevice && {
+          onMouseEnter: () => setHoverContent(true),
+          onMouseLeave: () => setHoverContent(false),
+        })}
       >
         <div className="flex items-center gap-2 mb-2">
           <Info width={24} height={24} className="text-blue-600" />
