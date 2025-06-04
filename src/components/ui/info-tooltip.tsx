@@ -91,7 +91,7 @@ export const InfoTooltip: React.FC<InfoTooltipProps> = ({
         sideOffset={sideOffset}
         align="center"
         className={cn(
-          "z-[9999] rounded-lg border border-gray-200 bg-white text-black shadow-md p-6 text-left",
+          "z-[9999] rounded-lg border border-gray-200 bg-gray-50 text-black shadow-md p-6 text-left",
           "flex flex-col gap-2",
           "transition-all duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0 data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95",
           "cursor-default",
