@@ -69,3 +69,13 @@ export const InsideButton: Story = {
     </Button>
   ),
 };
+
+export const Alignments: Story = {
+  render: () => (
+    <div className="flex gap-8 items-center">
+      <InfoTooltip title="Left" text="Appears on the left" align="start" />
+      <InfoTooltip title="Center" text="Appears in the center" align="center" />
+      <InfoTooltip title="Right" text="Appears on the right" align="end" />
+    </div>
+  ),
+};

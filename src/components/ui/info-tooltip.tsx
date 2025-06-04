@@ -19,6 +19,8 @@ export interface InfoTooltipProps {
   size?: IconSize;
   side?: "top" | "right" | "bottom" | "left";
   sideOffset?: number;
+  align?: "center" | "start" | "end";
+  alignOffset?: number;
 }
 
 export const InfoTooltip: React.FC<InfoTooltipProps> = ({
@@ -27,6 +29,8 @@ export const InfoTooltip: React.FC<InfoTooltipProps> = ({
   size = "md",
   side = "top",
   sideOffset = 4,
+  align = "center",
+  alignOffset = -26,
 }) => {
   const [open, setOpen] = React.useState(false);
   const [hoverTrigger, setHoverTrigger] = React.useState(false);
@@ -89,7 +93,8 @@ export const InfoTooltip: React.FC<InfoTooltipProps> = ({
       <PopoverPrimitive.Content
         side={side}
         sideOffset={sideOffset}
-        align="center"
+        align={align}
+        alignOffset={alignOffset}
         className={cn(
           "z-[9999] rounded-lg border border-gray-200 bg-gray-50 text-black shadow-md p-6 text-left",
           "flex flex-col gap-2",
