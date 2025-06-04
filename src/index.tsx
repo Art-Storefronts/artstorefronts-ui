@@ -357,3 +357,5 @@ export {
   HighlightTrigger,
   HighlightContent,
 } from "@/components/ui/highlight";
+
+export { InfoTooltip } from "@/components/ui/info-tooltip";
