@@ -72,9 +72,10 @@ export const InfoTooltip: React.FC<InfoTooltipProps> = ({
   return (
     <PopoverPrimitive.Root open={open} onOpenChange={setOpen}>
       <PopoverPrimitive.Trigger asChild>
-        <button
-          type="button"
+        <div
+          role="button"
           aria-label="Show info"
+          onClick={(e) => e.stopPropagation()}
           className={cn(
             "flex items-center justify-center rounded-full bg-white text-blue-600 hover:bg-gray-100 focus:outline-none",
             "transition-colors duration-150 z-[1000]"
@@ -83,7 +84,7 @@ export const InfoTooltip: React.FC<InfoTooltipProps> = ({
           {...triggerProps}
         >
           <Info width={ICON_SIZES[size]} height={ICON_SIZES[size]} />
-        </button>
+        </div>
       </PopoverPrimitive.Trigger>
       <PopoverPrimitive.Content
         side={side}
