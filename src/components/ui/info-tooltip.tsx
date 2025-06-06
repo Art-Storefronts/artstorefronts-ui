@@ -13,6 +13,9 @@ const ICON_SIZES = {
 
 type IconSize = keyof typeof ICON_SIZES;
 
+// Simple global state to track open tooltips
+const openTooltips = new Set<() => void>();
+
 export interface InfoTooltipProps {
   title: string;
   text: string;
@@ -35,10 +38,43 @@ export const InfoTooltip: React.FC<InfoTooltipProps> = ({
   const [open, setOpen] = React.useState(false);
   const [hoverTrigger, setHoverTrigger] = React.useState(false);
   const [hoverContent, setHoverContent] = React.useState(false);
-  const closeTimer = React.useRef<NodeJS.Timeout | null>(null);
-  const isTouchDevice =
+  const [isTouchDevice, setIsTouchDevice] = React.useState(
     typeof window !== "undefined" &&
-    window.matchMedia("(pointer: coarse)").matches;
+      window.matchMedia("(pointer: coarse)").matches
+  );
+  const closeTimer = React.useRef<NodeJS.Timeout | null>(null);
+
+  // Listen for touch device changes (e.g., when switching between desktop/mobile in dev tools)
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const mediaQuery = window.matchMedia("(pointer: coarse)");
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsTouchDevice(e.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
+  // Register/unregister this tooltip's close function
+  React.useEffect(() => {
+    const closeFunction = () => setOpen(false);
+    if (open) {
+      // Only close other tooltips if this is a touch device (click interaction)
+      if (isTouchDevice) {
+        openTooltips.forEach((close) => close !== closeFunction && close());
+      }
+      // Then add this one
+      openTooltips.add(closeFunction);
+    } else {
+      openTooltips.delete(closeFunction);
+    }
+
+    return () => {
+      openTooltips.delete(closeFunction);
+    };
+  }, [open, isTouchDevice]);
 
   // Desktop: open if hovering trigger or content, close with delay if not
   React.useEffect(() => {
@@ -74,12 +110,26 @@ export const InfoTooltip: React.FC<InfoTooltipProps> = ({
       };
 
   return (
-    <PopoverPrimitive.Root open={open} onOpenChange={setOpen}>
+    <PopoverPrimitive.Root
+      open={open}
+      onOpenChange={(newOpen) => {
+        // Only allow onOpenChange to control state on touch devices
+        if (isTouchDevice) {
+          setOpen(newOpen);
+        }
+      }}
+    >
       <PopoverPrimitive.Trigger asChild>
         <div
           role="button"
           aria-label="Show info"
-          onClick={(e) => e.stopPropagation()}
+          onClick={(e) => {
+            e.stopPropagation();
+            // On desktop, prevent any click behavior - only respond to hover
+            if (!isTouchDevice) {
+              e.preventDefault();
+            }
+          }}
           className={cn(
             "flex items-center justify-center rounded-full bg-white text-blue-600 hover:bg-gray-100 focus:outline-none",
             "transition-colors duration-150 z-[1000]"
