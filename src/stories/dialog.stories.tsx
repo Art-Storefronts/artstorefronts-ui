@@ -31,7 +31,7 @@ const Template: StoryFn = (args) => (
     <DialogTrigger asChild>
       <Button variant="outline">Edit Profile</Button>
     </DialogTrigger>
-    <DialogContent className="sm:max-w-[425px]">
+    <DialogContent className="sm:max-w-[425px]" showOverlay={args.showOverlay}>
       <DialogHeader>
         <DialogTitle>Edit profile</DialogTitle>
         <DialogDescription>
@@ -60,3 +60,9 @@ const Template: StoryFn = (args) => (
 );
 
 export const Default = Template.bind({});
+
+export const WithoutOverlay = Template.bind({});
+WithoutOverlay.args = {
+  showOverlay: false,
+};
+
