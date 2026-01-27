@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import {
   AlertDialog,
   AlertDialogTrigger,
@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 
-export default {
+const meta = {
   title: 'Components/AlertDialog',
   component: AlertDialog,
   subcomponents: {
@@ -26,27 +26,29 @@ export default {
     AlertDialogCancel,
   },
   tags: ['autodocs'],
-} as Meta;
+} satisfies Meta<typeof AlertDialog>;
 
-const Template: StoryFn = (args) => (
-  <AlertDialog {...args}>
-    <AlertDialogTrigger asChild>
-      <Button>Open Alert Dialog</Button>
-    </AlertDialogTrigger>
-    <AlertDialogContent>
-      <AlertDialogHeader>
-        <AlertDialogTitle>Alert Title</AlertDialogTitle>
-        <AlertDialogDescription>
-          This is an alert description. Are you sure you want to proceed?
-        </AlertDialogDescription>
-      </AlertDialogHeader>
-      <AlertDialogFooter>
-        <AlertDialogCancel>Cancel</AlertDialogCancel>
-        <AlertDialogAction>Confirm</AlertDialogAction>
-      </AlertDialogFooter>
-    </AlertDialogContent>
-  </AlertDialog>
-);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Default: Story = {
+  render: () => (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button>Open Alert Dialog</Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Alert Title</AlertDialogTitle>
+          <AlertDialogDescription>
+            This is an alert description. Are you sure you want to proceed?
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction>Confirm</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  ),
+};

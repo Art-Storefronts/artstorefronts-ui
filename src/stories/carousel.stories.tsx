@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import {
   Carousel,
   CarouselContent,
@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/carousel';
 import { Card, CardContent } from '@/components/ui/card';
 
-export default {
+const meta = {
   title: 'Components/Carousel',
   component: Carousel,
   subcomponents: {
@@ -24,10 +24,16 @@ export default {
     },
   },
   tags: ['autodocs'],
-} as Meta;
+} satisfies Meta<typeof Carousel>;
 
-const Template: StoryFn = (args) => {
-  return (
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    orientation: 'horizontal',
+  },
+  render: (args) => (
     <Carousel {...args}>
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (
@@ -45,10 +51,5 @@ const Template: StoryFn = (args) => {
       <CarouselPrevious />
       <CarouselNext />
     </Carousel>
-  );
-};
-
-export const Default = Template.bind({});
-Default.args = {
-  orientation: 'horizontal',
+  ),
 };

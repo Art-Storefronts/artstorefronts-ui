@@ -1,11 +1,11 @@
-import { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import {
   FeatureButton,
   FeatureButtonProps,
 } from "@/components/ui/feature-button";
 import { PlusIcon, SettingsIcon, TrashIcon } from "lucide-react";
 
-export default {
+const meta = {
   title: "Components/FeatureButton",
   component: FeatureButton,
   argTypes: {
@@ -32,43 +32,70 @@ export default {
     },
   },
   tags: ["autodocs"],
-} as Meta<FeatureButtonProps>;
+} satisfies Meta<typeof FeatureButton>;
 
-const Template: StoryFn<FeatureButtonProps> = (args) => (
-  <div className="w-80">
-    <FeatureButton {...args} />
-  </div>
-);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
-Default.args = {
-  text: "Feature Button",
-  variant: "default",
+export const Default: Story = {
+  args: {
+    text: "Feature Button",
+    variant: "default",
+  },
+  render: (args) => (
+    <div className="w-80">
+      <FeatureButton {...args} />
+    </div>
+  ),
 };
 
-export const WithIcon = Template.bind({});
-WithIcon.args = {
-  text: "Settings",
-  icon: <SettingsIcon />,
-  variant: "default",
+export const WithIcon: Story = {
+  args: {
+    text: "Settings",
+    icon: <SettingsIcon />,
+    variant: "default",
+  },
+  render: (args) => (
+    <div className="w-80">
+      <FeatureButton {...args} />
+    </div>
+  ),
 };
 
-export const Outline = Template.bind({});
-Outline.args = {
-  text: "Add Artwork",
-  icon: <PlusIcon />,
-  variant: "outline",
+export const Outline: Story = {
+  args: {
+    text: "Add Artwork",
+    icon: <PlusIcon />,
+    variant: "outline",
+  },
+  render: (args) => (
+    <div className="w-80">
+      <FeatureButton {...args} />
+    </div>
+  ),
 };
 
-export const Ghost = Template.bind({});
-Ghost.args = {
-  text: "Edit Title",
-  variant: "ghost",
+export const Ghost: Story = {
+  args: {
+    text: "Edit Title",
+    variant: "ghost",
+  },
+  render: (args) => (
+    <div className="w-80">
+      <FeatureButton {...args} />
+    </div>
+  ),
 };
 
-export const Destructive = Template.bind({});
-Destructive.args = {
-  text: "Delete",
-  icon: <TrashIcon />,
-  variant: "destructive",
+export const Destructive: Story = {
+  args: {
+    text: "Delete",
+    icon: <TrashIcon />,
+    variant: "destructive",
+  },
+  render: (args) => (
+    <div className="w-80">
+      <FeatureButton {...args} />
+    </div>
+  ),
 };

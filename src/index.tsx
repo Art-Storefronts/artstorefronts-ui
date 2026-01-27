@@ -43,7 +43,7 @@ export {
   BreadcrumbEllipsis,
 } from "@/components/ui/breadcrumb";
 
-export { Calendar } from "@/components/ui/calendar";
+export { Calendar, CalendarDayButton } from "@/components/ui/calendar";
 export type { CalendarProps } from "@/components/ui/calendar";
 
 export {

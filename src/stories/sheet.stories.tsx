@@ -1,5 +1,5 @@
-import React from "react";
-import { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
+import { CircleXIcon } from "lucide-react";
 import {
   Sheet,
   SheetClose,
@@ -11,98 +11,206 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { CircleXIcon } from "lucide-react";
 
-type StoryProps = {
-  side: "left" | "right" | "top" | "bottom";
-  closeIcon: React.ReactNode;
-};
-
-// Set up metadata for the component
-export default {
+const meta = {
   title: "Components/Sheet",
   component: Sheet,
   args: {
     side: "right",
-    closeIcon: "",
   },
   argTypes: {
     side: {
       control: "select",
       options: ["left", "right", "top", "bottom"],
     },
-    closeIcon: {
-      control: { type: "text" },
-      table: {
-        type: { summary: "ReactNode" },
-      },
-    },
   },
   tags: ["autodocs"],
-} as Meta;
+} satisfies Meta<typeof Sheet>;
 
-// Define the template for your component's stories
-function Template({ side, closeIcon }: StoryProps) {
-  return (
-    <div className="grid grid-cols-2 gap-2">
-      <Sheet key={side}>
-        <SheetTrigger asChild>
-          <Button variant="outline">{side.toUpperCase()}</Button>
-        </SheetTrigger>
-        <SheetContent side={side} closeIcon={closeIcon}>
-          <SheetHeader>
-            <SheetTitle>Edit profile</SheetTitle>
-            <SheetDescription>
-              Make changes to your profile here. Click save when you're done.
-            </SheetDescription>
-          </SheetHeader>
-          <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <label htmlFor="name" className="text-right">
-                Name
-              </label>
-              <input id="name" value="Pedro Duarte" className="col-span-3" />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <label htmlFor="username" className="text-right">
-                Username
-              </label>
-              <input id="username" value="@peduarte" className="col-span-3" />
-            </div>
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Left: Story = {
+  render: () => (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">LEFT</Button>
+      </SheetTrigger>
+      <SheetContent side="left">
+        <SheetHeader>
+          <SheetTitle>Edit profile</SheetTitle>
+          <SheetDescription>
+            Make changes to your profile here. Click save when you're done.
+          </SheetDescription>
+        </SheetHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <label htmlFor="name" className="text-right">
+              Name
+            </label>
+            <input id="name" value="Pedro Duarte" className="col-span-3" />
           </div>
-          <SheetFooter>
-            <SheetClose asChild>
-              <Button type="submit">Save changes</Button>
-            </SheetClose>
-          </SheetFooter>
-        </SheetContent>
-      </Sheet>
-    </div>
-  );
-}
-
-export const Left: StoryFn<StoryProps> = Template.bind({});
-Left.args = {
-  side: "left",
+          <div className="grid grid-cols-4 items-center gap-4">
+            <label htmlFor="username" className="text-right">
+              Username
+            </label>
+            <input id="username" value="@peduarte" className="col-span-3" />
+          </div>
+        </div>
+        <SheetFooter>
+          <SheetClose asChild>
+            <Button type="submit">Save changes</Button>
+          </SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  ),
 };
 
-export const Right: StoryFn<StoryProps> = Template.bind({});
-Right.args = {
-  side: "right",
+export const Right: Story = {
+  render: () => (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">RIGHT</Button>
+      </SheetTrigger>
+      <SheetContent side="right">
+        <SheetHeader>
+          <SheetTitle>Edit profile</SheetTitle>
+          <SheetDescription>
+            Make changes to your profile here. Click save when you're done.
+          </SheetDescription>
+        </SheetHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <label htmlFor="name" className="text-right">
+              Name
+            </label>
+            <input id="name" value="Pedro Duarte" className="col-span-3" />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <label htmlFor="username" className="text-right">
+              Username
+            </label>
+            <input id="username" value="@peduarte" className="col-span-3" />
+          </div>
+        </div>
+        <SheetFooter>
+          <SheetClose asChild>
+            <Button type="submit">Save changes</Button>
+          </SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  ),
 };
 
-export const Top: StoryFn<StoryProps> = Template.bind({});
-Top.args = {
-  side: "top",
+export const Top: Story = {
+  render: () => (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">TOP</Button>
+      </SheetTrigger>
+      <SheetContent side="top">
+        <SheetHeader>
+          <SheetTitle>Edit profile</SheetTitle>
+          <SheetDescription>
+            Make changes to your profile here. Click save when you're done.
+          </SheetDescription>
+        </SheetHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <label htmlFor="name" className="text-right">
+              Name
+            </label>
+            <input id="name" value="Pedro Duarte" className="col-span-3" />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <label htmlFor="username" className="text-right">
+              Username
+            </label>
+            <input id="username" value="@peduarte" className="col-span-3" />
+          </div>
+        </div>
+        <SheetFooter>
+          <SheetClose asChild>
+            <Button type="submit">Save changes</Button>
+          </SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  ),
 };
 
-export const Bottom: StoryFn<StoryProps> = Template.bind({});
-Bottom.args = {
-  side: "bottom",
+export const Bottom: Story = {
+  render: () => (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">BOTTOM</Button>
+      </SheetTrigger>
+      <SheetContent side="bottom">
+        <SheetHeader>
+          <SheetTitle>Edit profile</SheetTitle>
+          <SheetDescription>
+            Make changes to your profile here. Click save when you're done.
+          </SheetDescription>
+        </SheetHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <label htmlFor="name" className="text-right">
+              Name
+            </label>
+            <input id="name" value="Pedro Duarte" className="col-span-3" />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <label htmlFor="username" className="text-right">
+              Username
+            </label>
+            <input id="username" value="@peduarte" className="col-span-3" />
+          </div>
+        </div>
+        <SheetFooter>
+          <SheetClose asChild>
+            <Button type="submit">Save changes</Button>
+          </SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  ),
 };
 
-export const WithCustomCloseIcon: StoryFn<StoryProps> = Template.bind({});
-WithCustomCloseIcon.args = {
-  side: "right",
-  closeIcon: <CircleXIcon className="h-7 w-7 text-red-500" />,
+export const WithCustomCloseIcon: Story = {
+  render: () => (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">RIGHT</Button>
+      </SheetTrigger>
+      <SheetContent side="right" closeIcon={<CircleXIcon className="h-7 w-7 text-red-500" />}>
+        <SheetHeader>
+          <SheetTitle>Edit profile</SheetTitle>
+          <SheetDescription>
+            Make changes to your profile here. Click save when you're done.
+          </SheetDescription>
+        </SheetHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <label htmlFor="name" className="text-right">
+              Name
+            </label>
+            <input id="name" value="Pedro Duarte" className="col-span-3" />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <label htmlFor="username" className="text-right">
+              Username
+            </label>
+            <input id="username" value="@peduarte" className="col-span-3" />
+          </div>
+        </div>
+        <SheetFooter>
+          <SheetClose asChild>
+            <Button type="submit">Save changes</Button>
+          </SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  ),
 };

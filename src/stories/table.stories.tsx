@@ -1,4 +1,4 @@
-import type { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import {
   Table,
   TableHeader,
@@ -22,7 +22,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 
-const meta: Meta<typeof Table> = {
+const meta = {
   title: 'Components/Table',
   component: Table,
   args: {
@@ -35,9 +35,10 @@ const meta: Meta<typeof Table> = {
     },
   },
   tags: ['autodocs'],
-};
+} satisfies Meta<typeof Table>;
 
 export default meta;
+type Story = StoryObj<typeof meta>;
 
 const data: Payment[] = [
   {
@@ -226,5 +227,6 @@ function TableTemplate() {
   );
 }
 
-export const Default: StoryFn = TableTemplate.bind({});
-Default.args = {};
+export const Default: Story = {
+  render: () => <TableTemplate />,
+};

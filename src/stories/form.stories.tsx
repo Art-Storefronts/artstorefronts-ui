@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
@@ -25,7 +25,7 @@ const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
 });
 
-export default {
+const meta = {
   title: "Components/Form",
   component: Form,
   subcomponents: {
@@ -37,134 +37,138 @@ export default {
     FormMessage,
   },
   tags: ["autodocs"],
-} as Meta;
+} satisfies Meta<typeof Form>;
 
-const Template: StoryFn = () => {
-  // Initialize form with React Hook Form and Zod validation
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      username: "",
-      email: "",
-    },
-  });
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-  // Form submission handler
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    toast.success("Form submitted!", {
-      description: `Username: ${values.username}, Email: ${values.email}`,
+export const Default: Story = {
+  render: () => {
+    // Initialize form with React Hook Form and Zod validation
+    const form = useForm<z.infer<typeof formSchema>>({
+      resolver: zodResolver(formSchema),
+      defaultValues: {
+        username: "",
+        email: "",
+      },
     });
-  }
 
-  return (
-    <div className="w-full max-w-md mx-auto">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <FormField
-            control={form.control}
-            name="username"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Username</FormLabel>
-                <FormControl>
-                  <Input placeholder="Enter your username" {...field} />
-                </FormControl>
-                <FormDescription>
-                  This is your public display name.
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+    // Form submission handler
+    function onSubmit(values: z.infer<typeof formSchema>) {
+      toast.success("Form submitted!", {
+        description: `Username: ${values.username}, Email: ${values.email}`,
+      });
+    }
 
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input placeholder="Enter your email" {...field} />
-                </FormControl>
-                <FormDescription>
-                  We'll never share your email with anyone else.
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+    return (
+      <div className="w-full max-w-md mx-auto">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Username</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter your username" {...field} />
+                  </FormControl>
+                  <FormDescription>
+                    This is your public display name.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <Button type="submit" className="w-full">
-            Submit
-          </Button>
-        </form>
-      </Form>
-    </div>
-  );
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter your email" {...field} />
+                  </FormControl>
+                  <FormDescription>
+                    We'll never share your email with anyone else.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <Button type="submit" className="w-full">
+              Submit
+            </Button>
+          </form>
+        </Form>
+      </div>
+    );
+  },
 };
 
-export const Default = Template.bind({});
-Default.args = {};
-
-export const WithErrors: StoryFn = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      username: "a", // Too short - will trigger validation error
-      email: "invalid-email", // Invalid email format
-    },
-    mode: "onChange", // Show errors immediately
-  });
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    toast.success("Form submitted!", {
-      description: `Username: ${values.username}, Email: ${values.email}`,
+export const WithErrors: Story = {
+  render: () => {
+    const form = useForm<z.infer<typeof formSchema>>({
+      resolver: zodResolver(formSchema),
+      defaultValues: {
+        username: "a", // Too short - will trigger validation error
+        email: "invalid-email", // Invalid email format
+      },
+      mode: "onChange", // Show errors immediately
     });
-  }
 
-  return (
-    <div className="w-full max-w-md mx-auto">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <FormField
-            control={form.control}
-            name="username"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Username</FormLabel>
-                <FormControl>
-                  <Input placeholder="Enter your username" {...field} />
-                </FormControl>
-                <FormDescription>
-                  This is your public display name.
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+    function onSubmit(values: z.infer<typeof formSchema>) {
+      toast.success("Form submitted!", {
+        description: `Username: ${values.username}, Email: ${values.email}`,
+      });
+    }
 
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input placeholder="Enter your email" {...field} />
-                </FormControl>
-                <FormDescription>
-                  We'll never share your email with anyone else.
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+    return (
+      <div className="w-full max-w-md mx-auto">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Username</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter your username" {...field} />
+                  </FormControl>
+                  <FormDescription>
+                    This is your public display name.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <Button type="submit" className="w-full">
-            Submit
-          </Button>
-        </form>
-      </Form>
-    </div>
-  );
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter your email" {...field} />
+                  </FormControl>
+                  <FormDescription>
+                    We'll never share your email with anyone else.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <Button type="submit" className="w-full">
+              Submit
+            </Button>
+          </form>
+        </Form>
+      </div>
+    );
+  },
 };
