@@ -21,7 +21,7 @@ export default meta;
 type Story = StoryObj<typeof ResizablePanelGroup>;
 
 export const Horizontal: Story = {
-  render: ({ direction = 'horizontal' }) => (
+  render: ({ direction = 'horizontal' as 'horizontal' | 'vertical' }) => (
     <ResizablePanelGroup direction={direction} className="min-w-[300px] max-w-md rounded-lg border">
       <ResizablePanel defaultSize={50}>
         <div className="flex h-[200px] items-center justify-center p-6">
@@ -39,7 +39,7 @@ export const Horizontal: Story = {
 };
 
 export const Vertical: Story = {
-  render: ({ direction = 'vertical' }) => (
+  render: ({ direction = 'vertical' as 'horizontal' | 'vertical' }) => (
     <ResizablePanelGroup direction={direction} className="min-h-[200px] max-w-md rounded-lg border">
       <ResizablePanel defaultSize={25}>
         <div className="flex h-full w-72 items-center justify-center p-6">
@@ -57,7 +57,7 @@ export const Vertical: Story = {
 };
 
 export const Handle: Story = {
-  render: ({ direction = 'horizontal' }) => (
+  render: ({ direction = 'horizontal' as 'horizontal' | 'vertical' }) => (
     <ResizablePanelGroup
       direction={direction}
       className="min-w-[300px] min-h-[200px] max-w-md rounded-lg border"

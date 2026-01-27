@@ -2,7 +2,9 @@ import { defineConfig } from 'tsup';
 
 export default defineConfig({
   entry: ['src/index.tsx', '!src/stores/**'],
-  dts: true,
+  dts: {
+    resolve: true,
+  },
   clean: true,
   sourcemap: true,
   format: ['esm'],

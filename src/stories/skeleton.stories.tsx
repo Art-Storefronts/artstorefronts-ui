@@ -1,16 +1,17 @@
-import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { Skeleton } from '@/components/ui/skeleton';
 
-// Set up metadata for the component
-export default {
+const meta = {
   title: 'Components/Skeleton',
   component: Skeleton,
   tags: ['autodocs'],
-} as Meta;
+} satisfies Meta<typeof Skeleton>;
 
-export const User: StoryFn = () => {
-  return (
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const User: Story = {
+  render: () => (
     <div className="flex items-center space-x-4">
       <Skeleton className="h-12 w-12 rounded-full" />
       <div className="space-y-2">
@@ -18,11 +19,11 @@ export const User: StoryFn = () => {
         <Skeleton className="h-4 w-[200px]" />
       </div>
     </div>
-  );
+  ),
 };
 
-export const Card: StoryFn = () => {
-  return (
+export const Card: Story = {
+  render: () => (
     <div className="flex flex-col space-y-3">
       <Skeleton className="h-[125px] w-[250px] rounded-xl" />
       <div className="space-y-2">
@@ -30,5 +31,5 @@ export const Card: StoryFn = () => {
         <Skeleton className="h-4 w-[200px]" />
       </div>
     </div>
-  );
+  ),
 };

@@ -1,9 +1,7 @@
-import { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { Rating } from "@/components/ui/rating";
 
-type RatingProps = React.ComponentProps<typeof Rating>;
-
-export default {
+const meta = {
   title: "Components/Rating",
   component: Rating,
   args: {
@@ -29,31 +27,37 @@ export default {
     onRatingChange: { action: "rating changed" },
   },
   tags: ["autodocs"],
-} as Meta;
+} satisfies Meta<typeof Rating>;
 
-const Template: StoryFn<RatingProps> = (args) => <Rating {...args} />;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
-Default.args = {};
-
-export const WithInitialRating = Template.bind({});
-WithInitialRating.args = {
-  rating: 7,  // Will show 3.5 stars
+export const Default: Story = {
+  args: {},
 };
 
-export const WithHalfStar = Template.bind({});
-WithHalfStar.args = {
-  rating: 3,  // Will show 1.5 stars
+export const WithInitialRating: Story = {
+  args: {
+    rating: 7,  // Will show 3.5 stars
+  },
 };
 
-export const Interactive = Template.bind({});
-Interactive.args = {
-  onRatingChange: (rating: number) =>
-    alert(`You selected a rating of ${rating}/10`),
+export const WithHalfStar: Story = {
+  args: {
+    rating: 3,  // Will show 1.5 stars
+  },
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  disabled: true,
-  rating: 8,  // Will show 4 stars
+export const Interactive: Story = {
+  args: {
+    onRatingChange: (rating: number) =>
+      alert(`You selected a rating of ${rating}/10`),
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+    rating: 8,  // Will show 4 stars
+  },
 };

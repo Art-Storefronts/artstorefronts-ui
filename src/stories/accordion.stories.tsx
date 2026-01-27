@@ -1,5 +1,4 @@
-import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import {
   Accordion,
   AccordionItem,
@@ -7,7 +6,7 @@ import {
   AccordionContent,
 } from '@/components/ui/accordion';
 
-export default {
+const meta = {
   title: 'Components/Accordion',
   component: Accordion,
   subcomponents: { AccordionItem, AccordionTrigger, AccordionContent },
@@ -19,15 +18,17 @@ export default {
     collapsible: { control: 'boolean' },
   },
   tags: ['autodocs'],
-} as Meta;
+} satisfies Meta<typeof Accordion>;
 
-interface AccordionStoryProps {
-  type: 'single' | 'multiple';
-  collapsible: boolean;
-}
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-function Template(args: AccordionStoryProps) {
-  return (
+export const Single: Story = {
+  args: {
+    type: 'single',
+    collapsible: true,
+  },
+  render: (args) => (
     <Accordion {...args} className="w-72">
       <AccordionItem value="item-1">
         <AccordionTrigger>Item 1</AccordionTrigger>
@@ -48,23 +49,62 @@ function Template(args: AccordionStoryProps) {
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-  );
-}
-
-export const Single: StoryFn<AccordionStoryProps> = Template.bind({});
-Single.args = {
-  type: 'single',
-  collapsible: true,
+  ),
 };
 
-export const Multiple: StoryFn<AccordionStoryProps> = Template.bind({});
-Multiple.args = {
-  type: 'multiple',
-  collapsible: true,
+export const Multiple: Story = {
+  args: {
+    type: 'multiple',
+  },
+  render: (args) => (
+    <Accordion {...args} className="w-72">
+      <AccordionItem value="item-1">
+        <AccordionTrigger>Item 1</AccordionTrigger>
+        <AccordionContent>
+          Content for item 1. This is an example of how you can use the accordion component.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger>Item 2</AccordionTrigger>
+        <AccordionContent>
+          Content for item 2. This is an example of how you can use the accordion component.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-3">
+        <AccordionTrigger>Item 3</AccordionTrigger>
+        <AccordionContent>
+          Content for item 3. This is an example of how you can use the accordion component.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  ),
 };
 
-export const NonCollapsible: StoryFn<AccordionStoryProps> = Template.bind({});
-NonCollapsible.args = {
-  type: 'single',
-  collapsible: false,
+export const NonCollapsible: Story = {
+  args: {
+    type: 'single',
+    collapsible: false,
+  },
+  render: (args) => (
+    <Accordion {...args} className="w-72">
+      <AccordionItem value="item-1">
+        <AccordionTrigger>Item 1</AccordionTrigger>
+        <AccordionContent>
+          Content for item 1. This is an example of how you can use the accordion component.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger>Item 2</AccordionTrigger>
+        <AccordionContent>
+          Content for item 2. This is an example of how you can use the accordion component.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-3">
+        <AccordionTrigger>Item 3</AccordionTrigger>
+        <AccordionContent>
+          Content for item 3. This is an example of how you can use the accordion component.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  ),
 };

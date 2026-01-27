@@ -1,13 +1,7 @@
-import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { Switch } from '@/components/ui/switch';
 
-type StoryProps = {
-  disabled: boolean;
-};
-
-// Set up metadata for the component
-export default {
+const meta = {
   title: 'Components/Switch',
   component: Switch,
   args: {
@@ -19,22 +13,28 @@ export default {
     },
   },
   tags: ['autodocs'],
-} as Meta;
+  decorators: [
+    (Story) => (
+      <div className="flex items-center space-x-2">
+        <Story />
+        <label htmlFor="airplane-mode">Airplane Mode</label>
+      </div>
+    ),
+  ],
+} satisfies Meta<typeof Switch>;
 
-// Define the template for your component's stories
-function Template({ disabled }) {
-  return (
-    <div className="flex items-center space-x-2">
-      <Switch id="airplane-mode" disabled={disabled} />
-      <label htmlFor="airplane-mode">Airplane Mode</label>
-    </div>
-  );
-}
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default: StoryFn<StoryProps> = Template.bind({});
-Default.args = {};
+export const Default: Story = {
+  args: {
+    id: 'airplane-mode',
+  },
+};
 
-export const Disabled: StoryFn<StoryProps> = Template.bind({});
-Disabled.args = {
-  disabled: true,
+export const Disabled: Story = {
+  args: {
+    id: 'airplane-mode',
+    disabled: true,
+  },
 };

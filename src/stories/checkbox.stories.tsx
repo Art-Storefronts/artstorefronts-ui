@@ -1,7 +1,7 @@
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { Checkbox } from '@/components/ui/checkbox';
 
-export default {
+const meta = {
   title: 'Components/Checkbox',
   component: Checkbox,
   argTypes: {
@@ -13,30 +13,36 @@ export default {
     },
   },
   tags: ['autodocs'],
-} as Meta;
+} satisfies Meta<typeof Checkbox>;
 
-const Template: StoryFn = (args) => <Checkbox {...args} />;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
-Default.args = {};
-
-export const Checked = Template.bind({});
-Checked.args = {
-  checked: true,
+export const Default: Story = {
+  args: {},
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  disabled: true,
+export const Checked: Story = {
+  args: {
+    checked: true,
+  },
 };
 
-export const DisabledChecked = Template.bind({});
-DisabledChecked.args = {
-  checked: true,
-  disabled: true,
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
 };
 
-export const CustomSize = Template.bind({});
-CustomSize.args = {
-  className: 'h-6 w-6',
+export const DisabledChecked: Story = {
+  args: {
+    checked: true,
+    disabled: true,
+  },
+};
+
+export const CustomSize: Story = {
+  args: {
+    className: 'h-6 w-6',
+  },
 };

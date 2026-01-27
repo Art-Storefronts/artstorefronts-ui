@@ -1,34 +1,31 @@
-import { Meta, StoryFn } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
-import { useState } from "react";
+import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "storybook/test";
 import { SearchInput } from "@/components/ui/search-input";
 
-export default {
+const meta = {
   title: "Components/SearchInput",
   component: SearchInput,
   tags: ["autodocs"],
-} as Meta;
+  decorators: [
+    (Story) => (
+      <div className="min-w-[300px]">
+        <Story />
+      </div>
+    ),
+  ],
+} satisfies Meta<typeof SearchInput>;
 
-const Template: StoryFn<typeof SearchInput> = (args) => {
-  const [value, setValue] = useState("");
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-  return (
-    <div className="min-w-[300px]">
-      <SearchInput
-        {...args}
-        value={value}
-        onChange={(newValue) => setValue(newValue)}
-      />
-    </div>
-  );
+export const Default: Story = {
+  args: {
+    onSubmit: fn(),
+  },
 };
 
-export const Default = Template.bind({});
-Default.args = {
-  onSubmit: action("Search submitted"),
-};
-
-export const CustomClassName = Template.bind({});
-CustomClassName.args = {
-  className: "rounded-none focus:ring-blue-500",
+export const CustomClassName: Story = {
+  args: {
+    className: "rounded-none focus:ring-blue-500",
+  },
 };

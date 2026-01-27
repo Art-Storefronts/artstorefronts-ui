@@ -1,29 +1,32 @@
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
 import { Progress } from '@/components/ui/progress';
 
-export default {
+const meta = {
   title: 'Components/Progress',
   component: Progress,
   tags: ['autodocs'],
-} as Meta;
+  decorators: [
+    (Story) => (
+      <div className="w-72 h-48">
+        <Story />
+      </div>
+    ),
+  ],
+} satisfies Meta<typeof Progress>;
 
-const Template: StoryFn = (args) => {
-  const [progress, setProgress] = React.useState(args.value || 0);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-  React.useEffect(() => {
-    const timer = setTimeout(() => setProgress(66), 500);
-    return () => clearTimeout(timer);
-  }, []);
+export const Default: Story = {
+  render: () => {
+    const [progress, setProgress] = React.useState(13);
 
-  return (
-    <div className="w-72 h-48">
-      <Progress {...args} value={progress} />
-    </div>
-  );
-};
+    React.useEffect(() => {
+      const timer = setTimeout(() => setProgress(66), 500);
+      return () => clearTimeout(timer);
+    }, []);
 
-export const Default = Template.bind({});
-Default.args = {
-  value: 13,
+    return <Progress value={progress} />;
+  },
 };

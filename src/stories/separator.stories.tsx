@@ -1,8 +1,7 @@
-import type { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { Separator } from '@/components/ui/separator';
-import { SeparatorProps } from '@radix-ui/react-separator';
 
-export default {
+const meta = {
   title: 'Components/Separator',
   component: Separator,
   args: {
@@ -21,10 +20,16 @@ export default {
     },
   },
   tags: ['autodocs'],
-} as Meta;
+} satisfies Meta<typeof Separator>;
 
-function HorizontalTemplate({ orientation, decorative }: SeparatorProps) {
-  return (
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Horizontal: Story = {
+  args: {
+    orientation: 'horizontal',
+  },
+  render: (args) => (
     <div>
       <div className="space-y-1">
         <h4 className="text-sm font-medium leading-none">Title</h4>
@@ -32,38 +37,31 @@ function HorizontalTemplate({ orientation, decorative }: SeparatorProps) {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </p>
       </div>
-      <Separator className="my-4" orientation={orientation} decorative={decorative} />
+      <Separator className="my-4" {...args} />
       <div className="space-y-1">
         <h4 className="text-sm font-medium leading-none">Title</h4>
         <p className="text-sm text-muted-foreground">
           Quisque nec cursus augue. Etiam vel blandit augue.
         </p>
       </div>
-      <Separator className="my-4" orientation={orientation} decorative={decorative} />
+      <Separator className="my-4" {...args} />
     </div>
-  );
-}
+  ),
+};
 
-function VerticalTemplate({ orientation, decorative }: SeparatorProps) {
-  return (
+export const Vertical: Story = {
+  args: {
+    orientation: 'vertical',
+  },
+  render: (args) => (
     <div>
       <div className="flex h-5 items-center space-x-4 text-sm">
         <div>Blog</div>
-        <Separator orientation={orientation} decorative={decorative} />
+        <Separator {...args} />
         <div>Docs</div>
-        <Separator orientation={orientation} decorative={decorative} />
+        <Separator {...args} />
         <div>Source</div>
       </div>
     </div>
-  );
-}
-
-export const Horizontal: StoryFn<typeof Separator> = HorizontalTemplate.bind({});
-Horizontal.args = {
-  orientation: 'horizontal',
-};
-
-export const Vertical: StoryFn<typeof Separator> = VerticalTemplate.bind({});
-Vertical.args = {
-  orientation: 'vertical',
+  ),
 };

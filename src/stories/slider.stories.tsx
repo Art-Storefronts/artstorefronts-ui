@@ -1,10 +1,7 @@
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { Slider } from '@/components/ui/slider';
 
-type SliderProps = React.ComponentProps<typeof Slider>;
-
-// Set up metadata for the component
-export default {
+const meta = {
   title: 'Components/Slider',
   component: Slider,
   args: {
@@ -36,39 +33,37 @@ export default {
     },
   },
   tags: ['autodocs'],
-} as Meta;
+  decorators: [
+    (Story) => (
+      <div className="w-80">
+        <Story />
+      </div>
+    ),
+  ],
+} satisfies Meta<typeof Slider>;
 
-// Define the template for your component's stories
-function Template({ disabled, defaultValue, min, max, step, inverted }: SliderProps) {
-  return (
-    <div className="w-80">
-      <Slider
-        disabled={disabled}
-        defaultValue={defaultValue ? defaultValue : [0]}
-        min={min}
-        max={max}
-        step={step}
-        inverted={inverted}
-      />
-    </div>
-  );
-}
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default: StoryFn<SliderProps> = Template.bind({});
-Default.args = {};
-
-export const WithStep: StoryFn<SliderProps> = Template.bind({});
-WithStep.args = {
-  step: 10,
+export const Default: Story = {
+  args: {},
 };
 
-export const Inverted: StoryFn<SliderProps> = Template.bind({});
-Inverted.args = {
-  inverted: true,
+export const WithStep: Story = {
+  args: {
+    step: 10,
+  },
 };
 
-export const Disabled: StoryFn<SliderProps> = Template.bind({});
-Disabled.args = {
-  defaultValue: [50],
-  disabled: true,
+export const Inverted: Story = {
+  args: {
+    inverted: true,
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    defaultValue: [50],
+    disabled: true,
+  },
 };

@@ -1,9 +1,8 @@
-import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { Toggle } from '@/components/ui/toggle';
 import { Bold, Italic, Underline } from 'lucide-react';
 
-export default {
+const meta = {
   title: 'Components/Toggle',
   component: Toggle,
   argTypes: {
@@ -18,54 +17,61 @@ export default {
     disabled: { control: 'boolean' },
   },
   tags: ['autodocs'],
-} as Meta;
+} satisfies Meta<typeof Toggle>;
 
-const Template: StoryFn = (args) => <Toggle {...args} />;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
-Default.args = {
-  variant: 'default',
-  size: 'default',
-  children: <Bold className="h-4 w-4" />,
+export const Default: Story = {
+  args: {
+    variant: 'default',
+    size: 'default',
+    children: <Bold className="h-4 w-4" />,
+  },
 };
 
-export const Outline = Template.bind({});
-Outline.args = {
-  variant: 'outline',
-  size: 'default',
-  children: <Italic className="h-4 w-4" />,
+export const Outline: Story = {
+  args: {
+    variant: 'outline',
+    size: 'default',
+    children: <Italic className="h-4 w-4" />,
+  },
 };
 
-export const WithText = Template.bind({});
-WithText.args = {
-  variant: 'default',
-  size: 'default',
-  children: (
-    <>
-      <Italic className="h-4 w-4 mr-2" />
-      Italic
-    </>
-  ),
+export const WithText: Story = {
+  args: {
+    variant: 'default',
+    size: 'default',
+    children: (
+      <>
+        <Italic className="h-4 w-4 mr-2" />
+        Italic
+      </>
+    ),
+  },
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  variant: 'default',
-  size: 'sm',
-  children: <Italic className="h-4 w-4" />,
+export const Small: Story = {
+  args: {
+    variant: 'default',
+    size: 'sm',
+    children: <Italic className="h-4 w-4" />,
+  },
 };
 
-export const Large = Template.bind({});
-Large.args = {
-  variant: 'default',
-  size: 'lg',
-  children: <Italic className="h-4 w-4" />,
+export const Large: Story = {
+  args: {
+    variant: 'default',
+    size: 'lg',
+    children: <Italic className="h-4 w-4" />,
+  },
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  variant: 'default',
-  size: 'lg',
-  disabled: true,
-  children: <Underline className="h-4 w-4" />,
+export const Disabled: Story = {
+  args: {
+    variant: 'default',
+    size: 'lg',
+    disabled: true,
+    children: <Underline className="h-4 w-4" />,
+  },
 };

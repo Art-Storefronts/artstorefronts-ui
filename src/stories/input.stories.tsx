@@ -1,20 +1,25 @@
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { Input } from '@/components/ui/input';
 
-export default {
+const meta = {
   title: 'Components/Input',
   component: Input,
   tags: ['autodocs'],
-} as Meta;
+  decorators: [
+    (Story) => (
+      <div className="w-[450px]">
+        <Story />
+      </div>
+    ),
+  ],
+} satisfies Meta<typeof Input>;
 
-const Template: StoryFn = (args) => (
-  <div className="w-[450px]">
-    <Input {...args} />
-  </div>
-);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
-Default.args = {
-  type: 'email',
-  placeholder: 'Email',
+export const Default: Story = {
+  args: {
+    type: 'email',
+    placeholder: 'Email',
+  },
 };
