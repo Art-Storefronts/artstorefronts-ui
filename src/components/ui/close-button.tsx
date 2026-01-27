@@ -23,20 +23,32 @@ const CloseButton: React.FC<CloseButtonProps> = ({ size, onClick, color }) => {
     }
   };
 
+  const getButtonSize = (size: CloseButtonProps["size"]) => {
+    switch (size) {
+      case "sm":
+        return "h-6 w-6"; // 24px button, 16px icon
+      case "md":
+        return "h-8 w-8"; // 32px button, 24px icon
+      case "lg":
+        return "h-12 w-12"; // 48px button, 40px icon
+      default:
+        return "h-8 w-8";
+    }
+  };
+
   return (
-    <Button
-      variant="ghost"
+    <button
       onClick={onClick}
       className={cn(
-        `p-0 rounded-md w-auto h-auto hover:bg-transparent md:hover:bg-accent`
+        "inline-flex items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+        getButtonSize(size)
       )}
     >
       <XIcon
-        size={`${getSize(size)}px`}
+        size={getSize(size)}
         color={color || "black"}
-        className="m-1"
       />
-    </Button>
+    </button>
   );
 };
 
