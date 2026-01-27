@@ -120,9 +120,6 @@ const chartConfig = {
 
 const meta = {
   title: 'Components/Chart',
-  parameters: {
-    layout: 'padded',
-  },
   argTypes: {},
   tags: ['autodocs'],
 } satisfies Meta;
@@ -143,8 +140,7 @@ export const Default: Story = {
     );
 
     return (
-      <div className="w-full max-w-3xl">
-        <Card>
+      <Card>
         <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
           <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
             <CardTitle>Bar Chart - Interactive</CardTitle>
@@ -170,7 +166,7 @@ export const Default: Story = {
           </div>
         </CardHeader>
         <CardContent className="px-2 sm:p-6">
-          <ChartContainer config={chartConfig} className="aspect-auto h-[250px] w-full min-w-0">
+          <ChartContainer config={chartConfig} className="aspect-auto h-[250px] w-full">
             <BarChart
               accessibilityLayer
               data={chartData}
@@ -214,7 +210,6 @@ export const Default: Story = {
           </ChartContainer>
         </CardContent>
       </Card>
-      </div>
     );
   },
 };
