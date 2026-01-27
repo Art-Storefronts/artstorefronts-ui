@@ -110,16 +110,19 @@ const chartConfig = {
   },
   desktop: {
     label: 'Desktop',
-    color: 'hsl(var(--chart-1))',
+    color: 'hsl(24 90% 58%)', // Orange
   },
   mobile: {
     label: 'Mobile',
-    color: 'hsl(var(--chart-2))',
+    color: 'hsl(173 80% 40%)', // Teal
   },
 } satisfies ChartConfig;
 
 const meta = {
   title: 'Components/Chart',
+  parameters: {
+    layout: 'padded',
+  },
   argTypes: {},
   tags: ['autodocs'],
 } satisfies Meta;
@@ -140,7 +143,8 @@ export const Default: Story = {
     );
 
     return (
-      <Card>
+      <div className="w-full max-w-3xl">
+        <Card>
         <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
           <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
             <CardTitle>Bar Chart - Interactive</CardTitle>
@@ -153,7 +157,7 @@ export const Default: Story = {
                 <button
                   key={chart}
                   data-active={activeChart === chart}
-                  className="relative z-30 flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l data-[active=true]:bg-muted/50 sm:border-l sm:border-t-0 sm:px-8 sm:py-6"
+                  className="relative z-30 flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l data-[active=true]:bg-muted/50 sm:border-l sm:border-t-0 sm:px-8 sm:py-6 cursor-pointer"
                   onClick={() => setActiveChart(chart)}
                 >
                   <span className="text-xs text-muted-foreground">{chartConfig[chart].label}</span>
@@ -166,7 +170,7 @@ export const Default: Story = {
           </div>
         </CardHeader>
         <CardContent className="px-2 sm:p-6">
-          <ChartContainer config={chartConfig} className="aspect-auto h-[250px] w-full">
+          <ChartContainer config={chartConfig} className="aspect-auto h-[250px] w-full min-w-0">
             <BarChart
               accessibilityLayer
               data={chartData}
@@ -210,6 +214,7 @@ export const Default: Story = {
           </ChartContainer>
         </CardContent>
       </Card>
+      </div>
     );
   },
 };
