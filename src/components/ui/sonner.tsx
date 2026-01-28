@@ -6,7 +6,7 @@ import { Toaster as Sonner } from "sonner";
 type SonnerToasterProps = React.ComponentProps<typeof Sonner>;
 
 const SonnerToaster = ({ ...props }: SonnerToasterProps) => {
-  const { theme = "system" } = useTheme();
+  const { theme = "light" } = useTheme();
 
   return (
     <Sonner

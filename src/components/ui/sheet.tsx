@@ -58,7 +58,7 @@ interface SheetContentProps
 const SheetContent = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Content>,
   SheetContentProps
->(({ side = "right", className, children, ...props }, ref) => (
+>(({ side = "right", className, children, closeIcon, ...props }, ref) => (
   <SheetPortal>
     <SheetOverlay />
     <SheetPrimitive.Content
@@ -67,9 +67,9 @@ const SheetContent = React.forwardRef<
       {...props}
     >
       {children}
-      {props.closeIcon ? (
+      {closeIcon ? (
         <SheetPrimitive.Close className="absolute right-6 top-6 cursor-pointer">
-          {props.closeIcon}
+          {closeIcon}
         </SheetPrimitive.Close>
       ) : (
         <SheetPrimitive.Close className="absolute right-5 top-6 rounded-none opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
