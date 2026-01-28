@@ -6,9 +6,11 @@ import { Button } from "@/components/ui/button";
 
 // Wrapper component to fix AnimatePresence type compatibility with React 19
 const SafeAnimatePresence: React.FC<React.PropsWithChildren<AnimatePresenceProps>> = (props) => {
-  const result = AnimatePresence(props);
-  // Ensure we always return a valid React element (null instead of undefined)
-  return (result ?? null) as React.ReactElement | null;
+  return (
+    <AnimatePresence {...props}>
+      {props.children}
+    </AnimatePresence>
+  );
 };
 
 interface InfiniteLikesProps extends React.HTMLAttributes<HTMLButtonElement> {
@@ -21,7 +23,7 @@ const InfiniteLikes = React.forwardRef<HTMLButtonElement, InfiniteLikesProps>(
     const [isActive, setIsActive] = React.useState(false);
     const [count, setCount] = React.useState(initialCount);
     const [clickCount, setClickCount] = React.useState(0);
-    const timeoutRef = React.useRef<NodeJS.Timeout>(undefined);
+    const timeoutRef = React.useRef<NodeJS.Timeout | undefined>(undefined);
 
     const handleClick = () => {
       if (timeoutRef.current) {

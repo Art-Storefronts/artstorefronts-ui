@@ -337,9 +337,7 @@ export function TimezoneSelector({
     return (
       <Button
         key={timezone.value}
-        ref={el => {
-          (optionRefs.current[index] = el);
-        }}
+        ref={el => { optionRefs.current[index] = el }}
         variant="ghost"
         className={`w-full justify-start text-left mb-1 ${bgClass} hover:bg-gray-200`}
         onClick={() => handleTimezoneChange(timezone.value)}
