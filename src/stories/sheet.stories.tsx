@@ -11,19 +11,12 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const meta = {
   title: "Components/Sheet",
   component: Sheet,
-  args: {
-    side: "right",
-  },
-  argTypes: {
-    side: {
-      control: "select",
-      options: ["left", "right", "top", "bottom"],
-    },
-  },
   tags: ["autodocs"],
 } satisfies Meta<typeof Sheet>;
 
@@ -36,7 +29,7 @@ export const Left: Story = {
       <SheetTrigger asChild>
         <Button variant="outline">LEFT</Button>
       </SheetTrigger>
-      <SheetContent side="left">
+      <SheetContent side="left" onOpenAutoFocus={(e) => e.preventDefault()}>
         <SheetHeader>
           <SheetTitle>Edit profile</SheetTitle>
           <SheetDescription>
@@ -48,13 +41,13 @@ export const Left: Story = {
             <label htmlFor="name" className="text-right">
               Name
             </label>
-            <input id="name" value="Pedro Duarte" className="col-span-3" />
+            <Input id="name" defaultValue="Pedro Duarte" className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <label htmlFor="username" className="text-right">
               Username
             </label>
-            <input id="username" value="@peduarte" className="col-span-3" />
+            <input id="username" defaultValue="@peduarte" className="col-span-3" />
           </div>
         </div>
         <SheetFooter>
@@ -73,7 +66,7 @@ export const Right: Story = {
       <SheetTrigger asChild>
         <Button variant="outline">RIGHT</Button>
       </SheetTrigger>
-      <SheetContent side="right">
+      <SheetContent side="right" onOpenAutoFocus={(e) => e.preventDefault()}>
         <SheetHeader>
           <SheetTitle>Edit profile</SheetTitle>
           <SheetDescription>
@@ -82,16 +75,16 @@ export const Right: Story = {
         </SheetHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <label htmlFor="name" className="text-right">
+            <Label htmlFor="name" className="text-right">
               Name
-            </label>
-            <input id="name" value="Pedro Duarte" className="col-span-3" />
+            </Label>
+            <Input id="name" defaultValue="Pedro Duarte" className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <label htmlFor="username" className="text-right">
+            <Label htmlFor="username" className="text-right">
               Username
-            </label>
-            <input id="username" value="@peduarte" className="col-span-3" />
+            </Label>
+            <Input id="username" defaultValue="@peduarte" className="col-span-3" />
           </div>
         </div>
         <SheetFooter>
@@ -110,7 +103,7 @@ export const Top: Story = {
       <SheetTrigger asChild>
         <Button variant="outline">TOP</Button>
       </SheetTrigger>
-      <SheetContent side="top">
+      <SheetContent side="top" onOpenAutoFocus={(e) => e.preventDefault()}>
         <SheetHeader>
           <SheetTitle>Edit profile</SheetTitle>
           <SheetDescription>
@@ -119,16 +112,16 @@ export const Top: Story = {
         </SheetHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <label htmlFor="name" className="text-right">
+            <Label htmlFor="name" className="text-right">
               Name
-            </label>
-            <input id="name" value="Pedro Duarte" className="col-span-3" />
+            </Label>
+            <Input id="name" defaultValue="Pedro Duarte" className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <label htmlFor="username" className="text-right">
+            <Label htmlFor="username" className="text-right">
               Username
-            </label>
-            <input id="username" value="@peduarte" className="col-span-3" />
+            </Label>
+            <Input id="username" defaultValue="@peduarte" className="col-span-3" />
           </div>
         </div>
         <SheetFooter>
@@ -147,7 +140,7 @@ export const Bottom: Story = {
       <SheetTrigger asChild>
         <Button variant="outline">BOTTOM</Button>
       </SheetTrigger>
-      <SheetContent side="bottom">
+      <SheetContent side="bottom" onOpenAutoFocus={(e) => e.preventDefault()}>
         <SheetHeader>
           <SheetTitle>Edit profile</SheetTitle>
           <SheetDescription>
@@ -156,16 +149,16 @@ export const Bottom: Story = {
         </SheetHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <label htmlFor="name" className="text-right">
+            <Label htmlFor="name" className="text-right">
               Name
-            </label>
-            <input id="name" value="Pedro Duarte" className="col-span-3" />
+            </Label>
+            <Input id="name" defaultValue="Pedro Duarte" className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <label htmlFor="username" className="text-right">
+            <Label htmlFor="username" className="text-right">
               Username
-            </label>
-            <input id="username" value="@peduarte" className="col-span-3" />
+            </Label>
+            <Input id="username" defaultValue="@peduarte" className="col-span-3" />
           </div>
         </div>
         <SheetFooter>
@@ -184,7 +177,7 @@ export const WithCustomCloseIcon: Story = {
       <SheetTrigger asChild>
         <Button variant="outline">RIGHT</Button>
       </SheetTrigger>
-      <SheetContent side="right" closeIcon={<CircleXIcon className="h-7 w-7 text-red-500" />}>
+      <SheetContent side="right" onOpenAutoFocus={(e) => e.preventDefault()} closeIcon={<CircleXIcon className="h-7 w-7 text-red-500" />}>
         <SheetHeader>
           <SheetTitle>Edit profile</SheetTitle>
           <SheetDescription>
@@ -193,16 +186,16 @@ export const WithCustomCloseIcon: Story = {
         </SheetHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <label htmlFor="name" className="text-right">
+            <Label htmlFor="name" className="text-right">
               Name
-            </label>
-            <input id="name" value="Pedro Duarte" className="col-span-3" />
+            </Label>
+            <Input id="name" defaultValue="Pedro Duarte" className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <label htmlFor="username" className="text-right">
+            <Label htmlFor="username" className="text-right">
               Username
-            </label>
-            <input id="username" value="@peduarte" className="col-span-3" />
+            </Label>
+            <Input id="username" defaultValue="@peduarte" className="col-span-3" />
           </div>
         </div>
         <SheetFooter>
