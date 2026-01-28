@@ -56,7 +56,7 @@ const arrowStyles = {
 } as const;
 
 const HighlightContent = React.forwardRef<
-  React.ElementRef<typeof PopoverPrimitive.Content>,
+  React.ComponentRef<typeof PopoverPrimitive.Content>,
   HighlightContentProps
 >(
   (
