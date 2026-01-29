@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant data-open (&[data-state="open"]);
+@custom-variant data-closed (&[data-state="closed"]);
 
 @theme {
   /* Colors */
@@ -34,22 +38,6 @@
   --radius-lg: 0.5rem;
   --radius-md: calc(0.5rem - 2px);
   --radius-sm: calc(0.5rem - 4px);
-  
-  /* Animations */
-  --animate-accordion-down: accordion-down 0.125s ease-out;
-  --animate-accordion-up: accordion-up 0.125s ease-out;
-  --animate-bounce-left-to-right: bounce-left-to-right 1s ease-in-out infinite;
-  --animate-bounce-right-to-left: bounce-right-to-left 1s ease-in-out infinite;
-  
-  /* Dialog animations */
-  --animate-in: fadeIn 0.125s ease-out;
-  --animate-out: fadeOut 0.125s ease-in;
-  --animate-zoom-in: zoomIn 0.125s ease-out;
-  --animate-zoom-out: zoomOut 0.125s ease-in;
-  --animate-slide-in-from-left: slideInFromLeft 0.125s ease-out;
-  --animate-slide-in-from-top: slideInFromTop 0.125s ease-out;
-  --animate-slide-out-to-left: slideOutToLeft 0.125s ease-in;
-  --animate-slide-out-to-top: slideOutToTop 0.125s ease-in;
 }
 
 @layer base {
@@ -92,16 +80,6 @@
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
-}
-
-@keyframes accordion-down {
-  from { height: 0; }
-  to { height: var(--radix-accordion-content-height); }
-}
-
-@keyframes accordion-up {
-  from { height: var(--radix-accordion-content-height); }
-  to { height: 0; }
 }
 
 @keyframes bounce-left-to-right {
