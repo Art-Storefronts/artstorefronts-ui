@@ -12,7 +12,7 @@ const meta = {
     },
     size: {
       control: { type: 'select' },
-      options: ['default', 'sm', 'lg', 'icon'],
+      options: ['xs', 'sm', 'default', 'lg', 'xl', '2xl', '3xl', '4xl', 'icon', 'icon-xs', 'icon-sm', 'icon-lg', 'icon-xl', 'icon-2xl', 'icon-3xl', 'icon-4xl'],
     },
     asChild: { control: 'boolean' },
     disabled: { control: 'boolean' },
@@ -71,30 +71,6 @@ export const Link: Story = {
   },
 };
 
-export const Small: Story = {
-  args: {
-    variant: 'default',
-    size: 'sm',
-    children: 'Small Button',
-  },
-};
-
-export const Large: Story = {
-  args: {
-    variant: 'default',
-    size: 'lg',
-    children: 'Large Button',
-  },
-};
-
-export const IconButton: Story = {
-  args: {
-    variant: 'default',
-    size: 'icon',
-    children: <Github className="h-4 w-4" />,
-  },
-};
-
 export const Disabled: Story = {
   args: {
     variant: 'default',
@@ -126,4 +102,34 @@ export const Loading: Story = {
       </>
     ),
   },
+};
+
+export const Sizes: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4 items-start">
+      <Button size="xs">Extra Small</Button>
+      <Button size="sm">Small</Button>
+      <Button size="default">Default</Button>
+      <Button size="lg">Large</Button>
+      <Button size="xl">Extra Large</Button>
+      <Button size="2xl">2X Large</Button>
+      <Button size="3xl">3X Large</Button>
+      <Button size="4xl">4X Large</Button>
+    </div>
+  ),
+};
+
+export const IconSizes: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4 items-start">
+      <Button size="icon-xs"><Github /></Button>
+      <Button size="icon-sm"><Github /></Button>
+      <Button size="icon"><Github /></Button>
+      <Button size="icon-lg"><Github /></Button>
+      <Button size="icon-xl"><Github /></Button>
+      <Button size="icon-2xl"><Github /></Button>
+      <Button size="icon-3xl"><Github /></Button>
+      <Button size="icon-4xl"><Github /></Button>
+    </div>
+  ),
 };
