@@ -16,7 +16,6 @@ const meta = {
     },
     asChild: { control: 'boolean' },
     disabled: { control: 'boolean' },
-    isLoading: { control: 'boolean' },
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof Button>;

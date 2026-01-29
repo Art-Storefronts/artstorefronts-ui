@@ -60,7 +60,7 @@ function DialogContent({
       <DialogPrimitive.Content
         data-slot="dialog-content"
         className={cn(
-          "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg transition-all duration-200 data-[state=open]:animate-[fadeIn_0.2s_ease-out,zoomIn_0.2s_ease-out] data-[state=closed]:animate-[fadeOut_0.2s_ease-in,zoomOut_0.2s_ease-in] sm:rounded-lg",
+          "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border border-gray-200 bg-background p-6 shadow-lg transition-all duration-200 data-[state=open]:animate-[fadeIn_0.2s_ease-out,zoomIn_0.2s_ease-out] data-[state=closed]:animate-[fadeOut_0.2s_ease-in,zoomOut_0.2s_ease-in] sm:rounded-lg",
           className
         )}
         {...props}
@@ -99,7 +99,7 @@ function DialogFooter({
     <div
       data-slot="dialog-footer"
       className={cn(
-        "bg-muted/50 -mx-4 -mb-4 rounded-b-xl border-t p-4 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end",
+        "bg-muted/50 -mx-4 -mb-4 rounded-b-xl border-t border-gray-200 p-4 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end",
         className
       )}
       {...props}
