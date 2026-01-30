@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { Calendar } from '@/components/ui/calendar';
 import { DateRange } from 'react-day-picker';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 const meta = {
   title: 'Components/Calendar',
@@ -144,3 +146,39 @@ export const CustomStyling: Story = {
     showOutsideDays: true,
   },
 };
+
+export const DateTimePicker: Story = {
+  render: () => {
+    const [date, setDate] = useState<Date | undefined>(new Date());
+    const [time, setTime] = useState<string>('09:00');
+
+    const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setTime(e.target.value);
+    };
+
+    return (
+      <div className="space-y-4">
+        <Calendar
+          mode="single"
+          selected={date}
+          onSelect={setDate}
+          className="rounded-lg border"
+        />
+        <div className="space-y-2">
+          <Label htmlFor="time">Start Time</Label>
+          <Input
+            id="time"
+            type="time"
+            value={time}
+            onChange={handleTimeChange}
+            className="w-full"
+          />
+        </div>
+        <p className="text-sm text-muted-foreground">
+          Selected: {date ? date.toLocaleDateString() : 'None'} at {time}
+        </p>
+      </div>
+    );
+  },
+};
+
