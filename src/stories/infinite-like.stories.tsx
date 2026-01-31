@@ -1,7 +1,7 @@
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { InfiniteLikes } from '@/components/ui/infinite-likes';
 
-export default {
+const meta = {
   title: 'Components/InfiniteLikes',
   component: InfiniteLikes,
   args: {
@@ -27,36 +27,62 @@ export default {
     },
   },
   tags: ['autodocs'],
-} as Meta;
+} satisfies Meta<typeof InfiniteLikes>;
 
-const Template: StoryFn = (args) => (
-  <div className="flex items-center justify-center min-h-[200px]">
-    <InfiniteLikes {...args} />
-  </div>
-);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
-Default.args = {};
-
-export const WithInitialCount = Template.bind({});
-WithInitialCount.args = {
-  initialCount: 1337,
+export const Default: Story = {
+  render: (args) => (
+    <div className="flex items-center justify-center min-h-[200px]">
+      <InfiniteLikes {...args} />
+    </div>
+  ),
 };
 
-export const Active = Template.bind({});
-Active.args = {
-  defaultActive: true,
-  initialCount: 1,
+export const WithInitialCount: Story = {
+  args: {
+    initialCount: 1337,
+  },
+  render: (args) => (
+    <div className="flex items-center justify-center min-h-[200px]">
+      <InfiniteLikes {...args} />
+    </div>
+  ),
 };
 
-export const CustomSize = Template.bind({});
-CustomSize.args = {
-  className: "h-32 w-32",
-  initialCount: 42,
+export const Active: Story = {
+  args: {
+    defaultActive: true,
+    initialCount: 1,
+  },
+  render: (args) => (
+    <div className="flex items-center justify-center min-h-[200px]">
+      <InfiniteLikes {...args} />
+    </div>
+  ),
 };
 
-export const Interactive = Template.bind({});
-Interactive.args = {
-  initialCount: 99,
-  onLike: (count: number) => alert(`Like count is now: ${count}`),
+export const CustomSize: Story = {
+  args: {
+    className: "h-32 w-32",
+    initialCount: 42,
+  },
+  render: (args) => (
+    <div className="flex items-center justify-center min-h-[200px]">
+      <InfiniteLikes {...args} />
+    </div>
+  ),
+};
+
+export const Interactive: Story = {
+  args: {
+    initialCount: 99,
+    onLike: (count: number) => alert(`Like count is now: ${count}`),
+  },
+  render: (args) => (
+    <div className="flex items-center justify-center min-h-[200px]">
+      <InfiniteLikes {...args} />
+    </div>
+  ),
 };

@@ -1,4 +1,4 @@
-/** @type { import('@storybook/react').Preview } */
+/** @type { import('@storybook/react-vite').Preview } */
 import '@/global.css';
 
 const preview = {

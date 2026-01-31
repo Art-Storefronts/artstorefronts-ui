@@ -1,8 +1,17 @@
 import * as React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type AnimatePresenceProps } from "framer-motion";
 import { Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+
+// Wrapper component to fix AnimatePresence type compatibility with React 19
+const SafeAnimatePresence: React.FC<React.PropsWithChildren<AnimatePresenceProps>> = (props) => {
+  return (
+    <AnimatePresence {...props}>
+      {props.children}
+    </AnimatePresence>
+  );
+};
 
 interface InfiniteLikesProps extends React.HTMLAttributes<HTMLButtonElement> {
   onLike?: (count: number) => void;
@@ -14,7 +23,7 @@ const InfiniteLikes = React.forwardRef<HTMLButtonElement, InfiniteLikesProps>(
     const [isActive, setIsActive] = React.useState(false);
     const [count, setCount] = React.useState(initialCount);
     const [clickCount, setClickCount] = React.useState(0);
-    const timeoutRef = React.useRef<NodeJS.Timeout>();
+    const timeoutRef = React.useRef<NodeJS.Timeout | undefined>(undefined);
 
     const handleClick = () => {
       if (timeoutRef.current) {
@@ -42,20 +51,22 @@ const InfiniteLikes = React.forwardRef<HTMLButtonElement, InfiniteLikesProps>(
     return (
       <div className="relative">
         {/* Expanding circle effect - moved outside button */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={clickCount}
-            initial={{ scale: 0.2, opacity: 1 }}
-            animate={{
-              scale: 5,
-              opacity: 0,
-            }}
-            transition={{
-              duration: 0.25,
-            }}
-            className="absolute inset-0 -z-10 bg-accent rounded-full"
-          />
-        </AnimatePresence>
+        <SafeAnimatePresence mode="wait">
+          {clickCount > 0 && (
+            <motion.div
+              key={clickCount}
+              initial={{ scale: 0.2, opacity: 1 }}
+              animate={{
+                scale: 5,
+                opacity: 0,
+              }}
+              transition={{
+                duration: 0.25,
+              }}
+              className="absolute inset-0 -z-10 bg-accent rounded-full"
+            />
+          )}
+        </SafeAnimatePresence>
 
         <Button
           ref={ref}
@@ -68,7 +79,7 @@ const InfiniteLikes = React.forwardRef<HTMLButtonElement, InfiniteLikesProps>(
           {...props}
         >
           {/* Count that slides up */}
-          <AnimatePresence mode="wait">
+          <SafeAnimatePresence mode="wait">
             {isActive && (
               <motion.span
                 initial={{ y: 0, opacity: 1 }}
@@ -95,7 +106,7 @@ const InfiniteLikes = React.forwardRef<HTMLButtonElement, InfiniteLikesProps>(
                 </span>
               </motion.span>
             )}
-          </AnimatePresence>
+          </SafeAnimatePresence>
 
           {/* Base heart that scales */}
           <motion.div

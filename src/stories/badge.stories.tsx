@@ -1,7 +1,7 @@
-import { Meta, StoryFn } from '@storybook/react';
-import { Badge, BadgeProps } from '@/components/ui/badge';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Badge } from '@/components/ui/badge';
 
-export default {
+const meta = {
   title: 'Components/Badge',
   component: Badge,
   argTypes: {
@@ -11,33 +11,43 @@ export default {
     },
   },
   tags: ['autodocs'],
-} as Meta;
+} satisfies Meta<typeof Badge>;
 
-const Template: StoryFn<BadgeProps> = (args) => <Badge {...args}>Badge Text</Badge>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
-Default.args = {
-  variant: 'default',
+export const Default: Story = {
+  args: {
+    variant: 'default',
+    children: 'Badge Text',
+  },
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  variant: 'secondary',
+export const Secondary: Story = {
+  args: {
+    variant: 'secondary',
+    children: 'Badge Text',
+  },
 };
 
-export const Destructive = Template.bind({});
-Destructive.args = {
-  variant: 'destructive',
+export const Destructive: Story = {
+  args: {
+    variant: 'destructive',
+    children: 'Badge Text',
+  },
 };
 
-export const Outline = Template.bind({});
-Outline.args = {
-  variant: 'outline',
+export const Outline: Story = {
+  args: {
+    variant: 'outline',
+    children: 'Badge Text',
+  },
 };
 
-export const CustomBadge = Template.bind({});
-CustomBadge.args = {
-  variant: 'default',
-  className: 'bg-blue-500 text-white border-blue-600',
-  children: 'Custom Badge',
+export const CustomBadge: Story = {
+  args: {
+    variant: 'default',
+    className: 'bg-blue-500 text-white border-blue-600',
+    children: 'Custom Badge',
+  },
 };

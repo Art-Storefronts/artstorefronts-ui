@@ -4,7 +4,7 @@
   "rsc": true,
   "tsx": true,
   "tailwind": {
-    "config": "tailwind.config.js",
+    "config": "",
     "css": "src/global.css",
     "baseColor": "zinc",
     "cssVariables": true,
@@ -13,5 +13,6 @@
   "aliases": {
     "components": "@/components",
     "utils": "@/lib/utils"
-  }
+  },
+  "iconLibrary": "lucide"
 }

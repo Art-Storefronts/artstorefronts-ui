@@ -1,10 +1,8 @@
-import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
-import { Textarea, TextareaProps } from '@/components/ui/textarea';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 
-// Set up metadata for the component
-export default {
+const meta = {
   title: 'Components/Textarea',
   component: Textarea,
   args: {
@@ -19,60 +17,54 @@ export default {
     },
   },
   tags: ['autodocs'],
-} as Meta;
+} satisfies Meta<typeof Textarea>;
 
-// Define the template for your component's stories
-function Template({ placeholder, disabled }: TextareaProps) {
-  return <Textarea placeholder={placeholder} disabled={disabled} />;
-}
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-function LabelTemplate({ placeholder, disabled }: TextareaProps) {
-  return (
+export const Default: Story = {
+  args: {},
+};
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
+};
+
+export const WithLabel: Story = {
+  args: {},
+  render: (args) => (
     <div className="grid w-full gap-1.5">
       <label className="text-sm" htmlFor="message">
         Your message
       </label>
-      <Textarea placeholder={placeholder} disabled={disabled} id="message" />
+      <Textarea {...args} id="message" />
     </div>
-  );
-}
+  ),
+};
 
-function TextTemplate({ placeholder, disabled }: TextareaProps) {
-  return (
+export const WithText: Story = {
+  args: {},
+  render: (args) => (
     <div className="grid w-full gap-1.5">
       <label className="text-sm" htmlFor="message2">
         Your message
       </label>
-      <Textarea placeholder={placeholder} disabled={disabled} id="message2" />
+      <Textarea {...args} id="message2" />
       <p className="text-sm text-muted-foreground">
         Your message will be copied to the support team.
       </p>
     </div>
-  );
-}
-
-function ButtonTemplate({ placeholder, disabled }: TextareaProps) {
-  return (
-    <div className="grid w-full gap-1.5">
-      <Textarea placeholder={placeholder} disabled={disabled} />
-      <Button>Send message</Button>
-    </div>
-  );
-}
-
-export const Default: StoryFn<TextareaProps> = Template.bind({});
-Default.args = {};
-
-export const Disabled: StoryFn<TextareaProps> = Template.bind({});
-Disabled.args = {
-  disabled: true,
+  ),
 };
 
-export const WithLabel: StoryFn<TextareaProps> = LabelTemplate.bind({});
-WithLabel.args = {};
-
-export const WithText: StoryFn<TextareaProps> = TextTemplate.bind({});
-WithText.args = {};
-
-export const WithButton: StoryFn<TextareaProps> = ButtonTemplate.bind({});
-WithButton.args = {};
+export const WithButton: Story = {
+  args: {},
+  render: (args) => (
+    <div className="grid w-full gap-1.5">
+      <Textarea {...args} />
+      <Button>Send message</Button>
+    </div>
+  ),
+};

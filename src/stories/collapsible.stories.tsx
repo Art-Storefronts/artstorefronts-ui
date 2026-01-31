@@ -1,10 +1,9 @@
-import { useState } from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
 import { Button } from '@/components/ui/button';
 import { ChevronsUpDown } from 'lucide-react';
 
-export default {
+const meta = {
   title: 'Components/Collapsible',
   component: Collapsible,
   subcomponents: { CollapsibleTrigger, CollapsibleContent },
@@ -12,13 +11,14 @@ export default {
     open: { control: 'boolean' },
   },
   tags: ['autodocs'],
-} as Meta;
+} satisfies Meta<typeof Collapsible>;
 
-const Template: StoryFn = (args) => {
-  const [isOpen, setIsOpen] = useState(args.open);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-  return (
-    <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-[350px] space-y-2">
+export const Default: Story = {
+  render: () => (
+    <Collapsible className="w-[350px] space-y-2">
       <div className="flex items-center justify-between space-x-4 px-4">
         <h4 className="text-sm font-semibold">@peduarte starred 3 repositories</h4>
         <CollapsibleTrigger asChild>
@@ -34,7 +34,5 @@ const Template: StoryFn = (args) => {
         <div className="rounded-md border px-4 py-3 font-mono text-sm">@stitches/react</div>
       </CollapsibleContent>
     </Collapsible>
-  );
+  ),
 };
-
-export const Default = Template.bind({});

@@ -1,11 +1,10 @@
-import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { ToastAction, ToastActionElement, ToastProvider } from '@/components/ui/toast';
 import { Toaster } from '@/components/ui/toaster';
 import { useToast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
 
-export default {
+const meta = {
   title: 'Components/Toast',
   argTypes: {
     variant: {
@@ -20,16 +19,12 @@ export default {
     },
   },
   tags: ['autodocs'],
-} as Meta;
+} satisfies Meta;
 
-interface ToastStoryProps {
-  title: string;
-  description: string;
-  variant: 'default' | 'destructive';
-  action: ToastActionElement;
-}
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-function Template({ action, title, description, variant }: ToastStoryProps) {
+const ToastDemo = ({ action, title, description, variant }: { action?: ToastActionElement; title?: string; description?: string; variant?: 'default' | 'destructive' }) => {
   const { toast } = useToast();
 
   return (
@@ -50,29 +45,37 @@ function Template({ action, title, description, variant }: ToastStoryProps) {
       </Button>
     </ToastProvider>
   );
-}
-
-export const Simple: StoryFn<ToastStoryProps> = Template.bind({});
-Simple.args = {
-  description: 'Your message has been sent',
 };
 
-export const WithTitle: StoryFn<ToastStoryProps> = Template.bind({});
-WithTitle.args = {
-  title: 'Uh oh! Something went wrong.',
-  description: 'There was a problem with your request.',
+export const Simple: Story = {
+  render: () => <ToastDemo description="Your message has been sent" />,
 };
 
-export const WithAction: StoryFn<ToastStoryProps> = Template.bind({});
-WithAction.args = {
-  title: 'Uh oh! Something went wrong.',
-  description: 'There was a problem with your request.',
-  action: <ToastAction altText="Try again">Try again</ToastAction>,
+export const WithTitle: Story = {
+  render: () => (
+    <ToastDemo
+      title="Uh oh! Something went wrong."
+      description="There was a problem with your request."
+    />
+  ),
 };
 
-export const Desctructive: StoryFn<ToastStoryProps> = Template.bind({});
-Desctructive.args = {
-  variant: 'destructive',
-  title: 'Uh oh! Something went wrong.',
-  description: 'There was a problem with your request.',
+export const WithAction: Story = {
+  render: () => (
+    <ToastDemo
+      title="Uh oh! Something went wrong."
+      description="There was a problem with your request."
+      action={<ToastAction altText="Try again">Try again</ToastAction>}
+    />
+  ),
+};
+
+export const Desctructive: Story = {
+  render: () => (
+    <ToastDemo
+      variant="destructive"
+      title="Uh oh! Something went wrong."
+      description="There was a problem with your request."
+    />
+  ),
 };

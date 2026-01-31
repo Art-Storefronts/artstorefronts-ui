@@ -1,8 +1,7 @@
-import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
-export default {
+const meta = {
   title: 'Components/Tooltip',
   component: Tooltip,
   subcomponents: { TooltipContent, TooltipTrigger },
@@ -18,44 +17,51 @@ export default {
     },
   },
   tags: ['autodocs'],
-} as Meta;
+} satisfies Meta<typeof Tooltip>;
 
-interface TooltipStoryProps {
-  content: string;
-  side: 'top' | 'right' | 'bottom' | 'left';
-}
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-function Template({ content, side }: TooltipStoryProps) {
-  return (
+export const Top: Story = {
+  render: () => (
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger>Hover me</TooltipTrigger>
-        <TooltipContent side={side}>{content}</TooltipContent>
+        <TooltipContent side="top">Tooltip on Top</TooltipContent>
       </Tooltip>
     </TooltipProvider>
-  );
-}
-
-export const Top: StoryFn<TooltipStoryProps> = Template.bind({});
-Top.args = {
-  content: 'Tooltip on Top',
-  side: 'top',
+  ),
 };
 
-export const Right: StoryFn<TooltipStoryProps> = Template.bind({});
-Right.args = {
-  content: 'Tooltip on Right',
-  side: 'right',
+export const Right: Story = {
+  render: () => (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>Hover me</TooltipTrigger>
+        <TooltipContent side="right">Tooltip on Right</TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  ),
 };
 
-export const Bottom: StoryFn<TooltipStoryProps> = Template.bind({});
-Bottom.args = {
-  content: 'Tooltip on Bottom',
-  side: 'bottom',
+export const Bottom: Story = {
+  render: () => (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>Hover me</TooltipTrigger>
+        <TooltipContent side="bottom">Tooltip on Bottom</TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  ),
 };
 
-export const Left: StoryFn<TooltipStoryProps> = Template.bind({});
-Left.args = {
-  content: 'Tooltip on Left',
-  side: 'left',
+export const Left: Story = {
+  render: () => (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>Hover me</TooltipTrigger>
+        <TooltipContent side="left">Tooltip on Left</TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  ),
 };

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import * as PopoverPrimitive from "@radix-ui/react-popover";
+import { Popover as PopoverPrimitive } from "radix-ui";
 import { cn } from "@/lib/utils";
 
 interface HighlightProps
@@ -56,7 +56,7 @@ const arrowStyles = {
 } as const;
 
 const HighlightContent = React.forwardRef<
-  React.ElementRef<typeof PopoverPrimitive.Content>,
+  React.ComponentRef<typeof PopoverPrimitive.Content>,
   HighlightContentProps
 >(
   (

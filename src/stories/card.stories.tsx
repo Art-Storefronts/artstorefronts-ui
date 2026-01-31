@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import {
   Card,
   CardHeader,
@@ -8,36 +8,36 @@ import {
   CardContent,
 } from '@/components/ui/card';
 
-export default {
+const meta = {
   title: 'Components/Card',
   component: Card,
   subcomponents: { CardHeader, CardFooter, CardTitle, CardDescription, CardContent },
   tags: ['autodocs'],
-} as Meta;
+} satisfies Meta<typeof Card>;
 
-const Template: StoryFn = (args) => (
-  <Card {...args}>
-    <CardHeader>
-      <CardTitle>Card Title</CardTitle>
-      <CardDescription>Card description goes here.</CardDescription>
-    </CardHeader>
-    <CardContent>
-      <p>This is the card content. You can place any elements here.</p>
-    </CardContent>
-    <CardFooter>
-      <p>Card Footer</p>
-    </CardFooter>
-  </Card>
-);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Default: Story = {
+  render: () => (
+    <Card>
+      <CardHeader>
+        <CardTitle>Card Title</CardTitle>
+        <CardDescription>Card description goes here.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>This is the card content. You can place any elements here.</p>
+      </CardContent>
+      <CardFooter>
+        <p>Card Footer</p>
+      </CardFooter>
+    </Card>
+  ),
+};
 
-export const WithCustomStyles = Template.bind({});
-WithCustomStyles.args = {
-  className: 'bg-blue-50 border-blue-200',
-  children: (
-    <>
+export const WithCustomStyles: Story = {
+  render: () => (
+    <Card className="bg-blue-50 border-blue-200">
       <CardHeader className="bg-blue-100">
         <CardTitle className="text-blue-800">Custom Styled Card</CardTitle>
         <CardDescription className="text-blue-600">
@@ -50,14 +50,13 @@ WithCustomStyles.args = {
       <CardFooter className="bg-blue-100">
         <p className="text-blue-600">Custom Footer</p>
       </CardFooter>
-    </>
+    </Card>
   ),
 };
 
-export const WithoutFooter = Template.bind({});
-WithoutFooter.args = {
-  children: (
-    <>
+export const WithoutFooter: Story = {
+  render: () => (
+    <Card>
       <CardHeader>
         <CardTitle>Card Without Footer</CardTitle>
         <CardDescription>This card has no footer.</CardDescription>
@@ -65,24 +64,23 @@ WithoutFooter.args = {
       <CardContent>
         <p>Only the header and content are present in this card.</p>
       </CardContent>
-    </>
+    </Card>
   ),
 };
 
-export const WithImage = Template.bind({});
-WithImage.args = {
-  children: (
-    <>
+export const WithImage: Story = {
+  render: () => (
+    <Card>
       <CardHeader>
         <CardTitle>Card with Image</CardTitle>
       </CardHeader>
       <CardContent>
-        <img src="https://via.placeholder.com/400x200" alt="Placeholder" className="rounded-lg" />
+        <img src="https://picsum.photos/400/200" alt="Placeholder" className="rounded-lg" />
         <p className="mt-4">This card includes an image in the content area.</p>
       </CardContent>
       <CardFooter>
         <p>Footer with actions</p>
       </CardFooter>
-    </>
+    </Card>
   ),
 };

@@ -1,8 +1,7 @@
-import React from "react";
-import { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { CloseButton, CloseButtonProps } from "@/components/ui/close-button";
 
-export default {
+const meta = {
   title: "Components/CloseButton",
   component: CloseButton,
   argTypes: {
@@ -13,27 +12,32 @@ export default {
     onClick: { action: "clicked" },
   },
   tags: ["autodocs"],
-} as Meta;
+} satisfies Meta<typeof CloseButton>;
 
-const Template: StoryFn<CloseButtonProps> = (args) => <CloseButton {...args} />;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Small = Template.bind({});
-Small.args = {
-  size: "sm",
+export const Small: Story = {
+  args: {
+    size: "sm",
+  },
 };
 
-export const Medium = Template.bind({});
-Medium.args = {
-  size: "md",
+export const Medium: Story = {
+  args: {
+    size: "md",
+  },
 };
 
-export const Large = Template.bind({});
-Large.args = {
-  size: "lg",
+export const Large: Story = {
+  args: {
+    size: "lg",
+  },
 };
 
-export const CustomColor = Template.bind({});
-CustomColor.args = {
-  size: "lg",
-  color: "red",
+export const CustomColor: Story = {
+  args: {
+    size: "lg",
+    color: "red",
+  },
 };

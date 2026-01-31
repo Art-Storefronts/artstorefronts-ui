@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import {
   ContextMenu,
   ContextMenuCheckboxItem,
@@ -15,7 +15,7 @@ import {
   ContextMenuTrigger,
 } from '@/components/ui/context-menu';
 
-export default {
+const meta = {
   title: 'Components/ContextMenu',
   component: ContextMenu,
   subcomponents: {
@@ -33,56 +33,59 @@ export default {
     ContextMenuSubTrigger,
   },
   tags: ['autodocs'],
-} as Meta;
+} satisfies Meta<typeof ContextMenu>;
 
-const Template: StoryFn = (args) => (
-  <ContextMenu>
-    <ContextMenuTrigger asChild>
-      <button className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
-        Right click here
-      </button>
-    </ContextMenuTrigger>
-    <ContextMenuContent className="w-64" {...args}>
-      <ContextMenuItem inset>
-        Back
-        <ContextMenuShortcut>⌘[</ContextMenuShortcut>
-      </ContextMenuItem>
-      <ContextMenuItem inset disabled>
-        Forward
-        <ContextMenuShortcut>⌘]</ContextMenuShortcut>
-      </ContextMenuItem>
-      <ContextMenuItem inset>
-        Reload
-        <ContextMenuShortcut>⌘R</ContextMenuShortcut>
-      </ContextMenuItem>
-      <ContextMenuSub>
-        <ContextMenuSubTrigger inset>More Tools</ContextMenuSubTrigger>
-        <ContextMenuSubContent className="w-48">
-          <ContextMenuItem>
-            Save Page As...
-            <ContextMenuShortcut>⇧⌘S</ContextMenuShortcut>
-          </ContextMenuItem>
-          <ContextMenuItem>Create Shortcut...</ContextMenuItem>
-          <ContextMenuItem>Name Window...</ContextMenuItem>
-          <ContextMenuSeparator />
-          <ContextMenuItem>Developer Tools</ContextMenuItem>
-        </ContextMenuSubContent>
-      </ContextMenuSub>
-      <ContextMenuSeparator />
-      <ContextMenuCheckboxItem checked>
-        Show Bookmarks Bar
-        <ContextMenuShortcut>⌘⇧B</ContextMenuShortcut>
-      </ContextMenuCheckboxItem>
-      <ContextMenuCheckboxItem>Show Full URLs</ContextMenuCheckboxItem>
-      <ContextMenuSeparator />
-      <ContextMenuRadioGroup value="pedro">
-        <ContextMenuLabel inset>People</ContextMenuLabel>
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: () => (
+    <ContextMenu>
+      <ContextMenuTrigger asChild>
+        <button className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
+          Right click here
+        </button>
+      </ContextMenuTrigger>
+      <ContextMenuContent className="w-64">
+        <ContextMenuItem inset>
+          Back
+          <ContextMenuShortcut>⌘[</ContextMenuShortcut>
+        </ContextMenuItem>
+        <ContextMenuItem inset disabled>
+          Forward
+          <ContextMenuShortcut>⌘]</ContextMenuShortcut>
+        </ContextMenuItem>
+        <ContextMenuItem inset>
+          Reload
+          <ContextMenuShortcut>⌘R</ContextMenuShortcut>
+        </ContextMenuItem>
+        <ContextMenuSub>
+          <ContextMenuSubTrigger inset>More Tools</ContextMenuSubTrigger>
+          <ContextMenuSubContent className="w-48">
+            <ContextMenuItem>
+              Save Page As...
+              <ContextMenuShortcut>⇧⌘S</ContextMenuShortcut>
+            </ContextMenuItem>
+            <ContextMenuItem>Create Shortcut...</ContextMenuItem>
+            <ContextMenuItem>Name Window...</ContextMenuItem>
+            <ContextMenuSeparator />
+            <ContextMenuItem>Developer Tools</ContextMenuItem>
+          </ContextMenuSubContent>
+        </ContextMenuSub>
         <ContextMenuSeparator />
-        <ContextMenuRadioItem value="pedro">Pedro Duarte</ContextMenuRadioItem>
-        <ContextMenuRadioItem value="colm">Colm Tuite</ContextMenuRadioItem>
-      </ContextMenuRadioGroup>
-    </ContextMenuContent>
-  </ContextMenu>
-);
-
-export const Default = Template.bind({});
+        <ContextMenuCheckboxItem checked>
+          Show Bookmarks Bar
+          <ContextMenuShortcut>⌘⇧B</ContextMenuShortcut>
+        </ContextMenuCheckboxItem>
+        <ContextMenuCheckboxItem>Show Full URLs</ContextMenuCheckboxItem>
+        <ContextMenuSeparator />
+        <ContextMenuRadioGroup value="pedro">
+          <ContextMenuLabel inset>People</ContextMenuLabel>
+          <ContextMenuSeparator />
+          <ContextMenuRadioItem value="pedro">Pedro Duarte</ContextMenuRadioItem>
+          <ContextMenuRadioItem value="colm">Colm Tuite</ContextMenuRadioItem>
+        </ContextMenuRadioGroup>
+      </ContextMenuContent>
+    </ContextMenu>
+  ),
+};

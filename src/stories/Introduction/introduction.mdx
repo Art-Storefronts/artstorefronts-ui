@@ -1,11 +1,9 @@
-import { Meta } from '@storybook/blocks';
-
-import logo from '../../../docs/asf-logo.png';
+import { Meta } from '@storybook/addon-docs/blocks';
 
 <Meta title="Introduction" />
 
 <p align="center" width="100%">
-  <img src={logo} />
+  <img src="https://i.imgur.com/p53fPWg.png" alt="Art Storefronts Logo" />
 </p>
 
 ### A collection of customizable React components built with TypeScript, Tailwind CSS, and Storybook. The components have been designed to be lightweight and easy to integrate into React projects.
@@ -16,8 +14,8 @@ Explore the components and check out the live documentation using the sidebar.
 
 Before installing and using this library, ensure that your project meets the following requirements:
 
-- **React**: Version 17.0 or higher
-- **Tailwind CSS**: Version 3.0 or higher
+- **React**: Version 19.0 or higher
+- **Tailwind CSS**: Version 4.0 or higher
 
 ## Get Started
 
@@ -37,13 +35,13 @@ yarn add @artstorefronts/ui
 
 Add the following import to your project (usually in index.tsx or App.tsx):
 
-```
+```javascript
 import '@artstorefronts/ui/dist/index.css';
 ```
 
 ### Install Tailwind CSS
 
-You must also have Tailwind CSS installed in your project. If you don't have it yet, you can install it by following these [these instructions](https://tailwindcss.com/docs/installation).
+You must also have Tailwind CSS installed in your project. If you don't have it yet, you can install it by following [these instructions](https://tailwindcss.com/docs/installation).
 
 ## Usage
 
@@ -54,9 +52,21 @@ import { Button } from '@artstorefronts/ui';
 
 const App = () => (
   <div className="container mx-auto">
-    <Button variant="outline" />
+    <Button variant="outline">Click Me</Button>
   </div>
 );
 
 export default App;
+```
+
+## Theme Customization
+
+If you want to customize the theme colors, you can override the CSS variables in your project's CSS file:
+
+```css
+:root {
+  --color-primary: hsl(220 70% 50%);
+  --color-secondary: hsl(160 60% 45%);
+  /* Add more custom colors as needed */
+}
 ```

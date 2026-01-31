@@ -10,7 +10,7 @@ A collection of customizable React components built with TypeScript, Tailwind CS
 
 Before installing and using this library, ensure that your project meets the following requirements:
 
-- React: Version 17.0 or higher
+- React: Version 19.1.2 or higher
 - Tailwind CSS: Version 3.0 or higher
 - Framer Motion: Version 11.0 or higher
 

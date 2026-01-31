@@ -31,7 +31,6 @@ export { Badge, badgeVariants } from "@/components/ui/badge";
 export type { BadgeProps } from "@/components/ui/badge";
 
 export { Button, buttonVariants } from "@/components/ui/button";
-export type { ButtonProps } from "@/components/ui/button";
 
 export {
   Breadcrumb,
@@ -43,7 +42,7 @@ export {
   BreadcrumbEllipsis,
 } from "@/components/ui/breadcrumb";
 
-export { Calendar } from "@/components/ui/calendar";
+export { Calendar, CalendarDayButton } from "@/components/ui/calendar";
 export type { CalendarProps } from "@/components/ui/calendar";
 
 export {

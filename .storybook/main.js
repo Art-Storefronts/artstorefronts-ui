@@ -1,26 +1,31 @@
-/** @type { import('@storybook/react-webpack5').StorybookConfig } */
-const path = require('path');
+/** @type { import('@storybook/react-vite').StorybookConfig } */
+import { mergeConfig } from 'vite';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const config = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
-    "@storybook/preset-create-react-app",
-    "@storybook/addon-onboarding",
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@chromatic-com/storybook",
-    "@storybook/addon-interactions",
+    "@storybook/addon-docs",
+    "@chromatic-com/storybook"
   ],
   framework: {
-    name: "@storybook/react-webpack5",
+    name: "@storybook/react-vite",
     options: {},
   },
-  webpackFinal: async (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@': path.resolve(__dirname, '../src'),
-    };
-    return config;
+  async viteFinal(config) {
+    return mergeConfig(config, {
+      resolve: {
+        alias: {
+          '@': path.resolve(__dirname, '../src'),
+          '@docs': path.resolve(__dirname, '../docs'),
+        },
+      },
+      assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.svg'],
+    });
   },
 };
 

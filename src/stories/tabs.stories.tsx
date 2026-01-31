@@ -1,11 +1,7 @@
-import { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
-type StoryProps = {
-  defaultValue: string;
-};
-
-export default {
+const meta = {
   title: "Components/Tabs",
   component: Tabs,
   subcomponents: { TabsList, TabsTrigger, TabsContent },
@@ -18,10 +14,16 @@ export default {
     },
   },
   tags: ["autodocs"],
-} as Meta;
+} satisfies Meta<typeof Tabs>;
 
-function Template(args: { defaultValue: string }) {
-  return (
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    defaultValue: "one",
+  },
+  render: (args) => (
     <Tabs {...args}>
       <TabsList>
         <TabsTrigger value="one">One</TabsTrigger>
@@ -32,25 +34,41 @@ function Template(args: { defaultValue: string }) {
       <TabsContent value="two">Content for tab two.</TabsContent>
       <TabsContent value="three">Content for tab three.</TabsContent>
     </Tabs>
-  );
-}
-
-export const Default: StoryFn<StoryProps> = Template.bind({});
-Default.args = {
-  defaultValue: "one",
+  ),
 };
 
-export const WithDifferentDefault: StoryFn<StoryProps> = Template.bind({});
-WithDifferentDefault.args = {
-  defaultValue: "two",
+export const WithDifferentDefault: Story = {
+  args: {
+    defaultValue: "two",
+  },
+  render: (args) => (
+    <Tabs {...args}>
+      <TabsList>
+        <TabsTrigger value="one">One</TabsTrigger>
+        <TabsTrigger value="two">Two</TabsTrigger>
+        <TabsTrigger value="three">Three</TabsTrigger>
+      </TabsList>
+      <TabsContent value="one">Content for tab one.</TabsContent>
+      <TabsContent value="two">Content for tab two.</TabsContent>
+      <TabsContent value="three">Content for tab three.</TabsContent>
+    </Tabs>
+  ),
 };
 
-export const WithDisabledTab: StoryFn<StoryProps> = Template.bind({});
-WithDisabledTab.args = {
-  defaultValue: "one",
-};
-
-export const CustomVariant: StoryFn<StoryProps> = Template.bind({});
-CustomVariant.args = {
-  defaultValue: "one",
+export const WithDisabledTab: Story = {
+  args: {
+    defaultValue: "one",
+  },
+  render: (args) => (
+    <Tabs {...args}>
+      <TabsList>
+        <TabsTrigger value="one">One</TabsTrigger>
+        <TabsTrigger value="two" disabled>Two (Disabled)</TabsTrigger>
+        <TabsTrigger value="three">Three</TabsTrigger>
+      </TabsList>
+      <TabsContent value="one">Content for tab one.</TabsContent>
+      <TabsContent value="two">Content for tab two.</TabsContent>
+      <TabsContent value="three">Content for tab three.</TabsContent>
+    </Tabs>
+  ),
 };

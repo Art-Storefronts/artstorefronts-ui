@@ -1,9 +1,9 @@
-import { Meta, StoryFn, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { SonnerToaster } from "@/components/ui/sonner";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
-export default {
+const meta = {
   title: "Components/SonnerToaster",
   component: SonnerToaster,
   tags: ["autodocs"],
@@ -30,29 +30,38 @@ export default {
       </div>
     ),
   ],
-} as Meta;
+} satisfies Meta<typeof SonnerToaster>;
 
-type Story = StoryObj<typeof SonnerToaster>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const Template: StoryFn = (args) => {
-  return (
+export const Default: Story = {
+  render: () => (
+    <div>
+      <SonnerToaster />
+      <div className="flex flex-col gap-2">
+        <Button variant="outline" onClick={() => toast("This is a toast")}>
+          Show Toast
+        </Button>
+      </div>
+    </div>
+  ),
+};
+
+export const CustomPosition: Story = {
+  args: {
+    position: "bottom-center",
+  },
+  render: (args) => (
     <div>
       <SonnerToaster {...args} />
       <div className="flex flex-col gap-2">
         <Button variant="outline" onClick={() => toast("This is a toast")}>
-          {args.buttonText || "Show Toast"}
+          Show Toast
         </Button>
       </div>
     </div>
-  );
-};
-
-export const Default = Template.bind({});
-Default.args = {};
-
-export const CustomPosition = Template.bind({});
-CustomPosition.args = {
-  position: "bottom-center",
+  ),
 };
 
 export const RichRendering: Story = {
@@ -92,14 +101,25 @@ export const CloseButton: Story = {
   ),
 };
 
-export const CustomStyling = Template.bind({});
-CustomStyling.args = {
-  toastOptions: {
-    style: {
-      background: "linear-gradient(to right, #00b09b, #96c93d)",
-      color: "white",
+export const CustomStyling: Story = {
+  args: {
+    toastOptions: {
+      style: {
+        background: "linear-gradient(to right, #00b09b, #96c93d)",
+        color: "white",
+      },
     },
   },
+  render: (args) => (
+    <div>
+      <SonnerToaster {...args} />
+      <div className="flex flex-col gap-2">
+        <Button variant="outline" onClick={() => toast("This is a toast")}>
+          Show Toast
+        </Button>
+      </div>
+    </div>
+  ),
 };
 
 export const CustomContent: Story = {

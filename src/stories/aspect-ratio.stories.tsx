@@ -1,7 +1,7 @@
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 
-export default {
+const meta = {
   title: 'Components/AspectRatio',
   component: AspectRatio,
   argTypes: {
@@ -12,36 +12,74 @@ export default {
     },
   },
   tags: ['autodocs'],
-} as Meta;
+  decorators: [
+    (Story) => (
+      <div className="w-[450px]">
+        <Story />
+      </div>
+    ),
+  ],
+} satisfies Meta<typeof AspectRatio>;
 
-const Template: StoryFn<{ ratio: number }> = (args) => (
-  <div className="w-[450px]">
-    <AspectRatio ratio={args.ratio}>
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    ratio: 16 / 9,
+  },
+  render: (args) => (
+    <AspectRatio {...args}>
       <img
-        src="https://via.placeholder.com/300"
+        src="https://picsum.photos/300/300"
         alt="Aspect Ratio Example"
         className="w-full h-full object-cover"
       />
     </AspectRatio>
-  </div>
-);
-
-export const Default = Template.bind({});
-Default.args = {
-  ratio: 16 / 9,
+  ),
 };
 
-export const Square = Template.bind({});
-Square.args = {
-  ratio: 1,
+export const Square: Story = {
+  args: {
+    ratio: 1,
+  },
+  render: (args) => (
+    <AspectRatio {...args}>
+      <img
+        src="https://picsum.photos/300/300"
+        alt="Aspect Ratio Example"
+        className="w-full h-full object-cover"
+      />
+    </AspectRatio>
+  ),
 };
 
-export const FourThree = Template.bind({});
-FourThree.args = {
-  ratio: 4 / 3,
+export const FourThree: Story = {
+  args: {
+    ratio: 4 / 3,
+  },
+  render: (args) => (
+    <AspectRatio {...args}>
+      <img
+        src="https://picsum.photos/300/300"
+        alt="Aspect Ratio Example"
+        className="w-full h-full object-cover"
+      />
+    </AspectRatio>
+  ),
 };
 
-export const Wide = Template.bind({});
-Wide.args = {
-  ratio: 21 / 9,
+export const Wide: Story = {
+  args: {
+    ratio: 21 / 9,
+  },
+  render: (args) => (
+    <AspectRatio {...args}>
+      <img
+        src="https://picsum.photos/300/300"
+        alt="Aspect Ratio Example"
+        className="w-full h-full object-cover"
+      />
+    </AspectRatio>
+  ),
 };
