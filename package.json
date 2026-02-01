@@ -1,6 +1,6 @@
 {
   "name": "@artstorefronts/ui",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -22,8 +22,6 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.0.10",
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cmdk": "1.1.1",
@@ -47,7 +45,9 @@
   "peerDependencies": {
     "framer-motion": "^11.0.0",
     "react": "^19.1.2",
-    "react-dom": "^19.1.2"
+    "react-dom": "^19.1.2",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.0.0",
