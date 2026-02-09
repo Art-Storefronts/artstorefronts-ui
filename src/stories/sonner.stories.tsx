@@ -4,28 +4,13 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
 const meta = {
-  title: "Components/SonnerToaster",
+  title: "Components/Sonner",
   component: SonnerToaster,
   tags: ["autodocs"],
-  args: {
-    position: "top-right",
-  },
-  argTypes: {
-    position: {
-      control: "select",
-      options: [
-        "top-left",
-        "top-center",
-        "top-right",
-        "bottom-left",
-        "bottom-center",
-        "bottom-right",
-      ],
-    },
-  },
   decorators: [
     (Story) => (
-      <div style={{ maxWidth: "200px" }}>
+      <div>
+        <SonnerToaster />
         <Story />
       </div>
     ),
@@ -37,116 +22,192 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
-    <div>
-      <SonnerToaster />
-      <div className="flex flex-col gap-2">
-        <Button variant="outline" onClick={() => toast("This is a toast")}>
-          Show Toast
-        </Button>
-      </div>
-    </div>
+    <Button variant="outline" onClick={() => toast("Event has been created")}>
+      Render toast
+    </Button>
   ),
 };
 
-export const CustomPosition: Story = {
-  args: {
-    position: "bottom-center",
-  },
-  render: (args) => (
-    <div>
-      <SonnerToaster {...args} />
-      <div className="flex flex-col gap-2">
-        <Button variant="outline" onClick={() => toast("This is a toast")}>
-          Show Toast
-        </Button>
-      </div>
-    </div>
+export const WithDescription: Story = {
+  render: () => (
+    <Button
+      variant="outline"
+      onClick={() =>
+        toast("Event has been created", {
+          description: "Monday, January 3rd at 6:00pm",
+        })
+      }
+    >
+      Render toast
+    </Button>
   ),
 };
 
-export const RichRendering: Story = {
-  args: {
-    position: "top-right",
-    richColors: true,
-  },
-  render: (args) => (
-    <div>
-      <SonnerToaster {...args} />
+export const Success: Story = {
+  render: () => (
+    <Button variant="outline" onClick={() => toast.success("Event has been created")}>
+      Render toast
+    </Button>
+  ),
+};
+
+export const Error: Story = {
+  render: () => (
+    <Button variant="outline" onClick={() => toast.error("Event has not been created")}>
+      Render toast
+    </Button>
+  ),
+};
+
+export const Info: Story = {
+  render: () => (
+    <Button variant="outline" onClick={() => toast.info("Be at the area 10 minutes before the event time")}>
+      Render toast
+    </Button>
+  ),
+};
+
+export const Warning: Story = {
+  render: () => (
+    <Button variant="outline" onClick={() => toast.warning("Event start time cannot be earlier than 8am")}>
+      Render toast
+    </Button>
+  ),
+};
+
+export const WithAction: Story = {
+  render: () => (
+    <Button
+      variant="outline"
+      onClick={() =>
+        toast("Event has been created", {
+          action: {
+            label: "Undo",
+            onClick: () => toast("Undo clicked"),
+          },
+        })
+      }
+    >
+      Render toast
+    </Button>
+  ),
+};
+
+export const WithCancel: Story = {
+  render: () => (
+    <Button
+      variant="outline"
+      onClick={() =>
+        toast("Event has been created", {
+          cancel: {
+            label: "Cancel",
+            onClick: () => toast("Cancel clicked"),
+          },
+        })
+      }
+    >
+      Render toast
+    </Button>
+  ),
+};
+
+export const Loading: Story = {
+  render: () => (
+    <Button
+      variant="outline"
+      onClick={() => toast.loading("Loading...")}
+    >
+      Render toast
+    </Button>
+  ),
+};
+
+export const Custom: Story = {
+  render: () => (
+    <Button
+      variant="outline"
+      onClick={() =>
+        toast.custom((t) => (
+          <div className="w-full bg-background border border-border rounded-lg p-4 shadow-lg">
+            <p className="font-semibold">Custom Toast</p>
+            <p className="text-sm text-muted-foreground mt-1">This is a custom toast component</p>
+          </div>
+        ))
+      }
+    >
+      Render toast
+    </Button>
+  ),
+};
+
+export const Position: Story = {
+  render: () => (
+    <div className="flex flex-wrap gap-2">
       <Button
         variant="outline"
-        onClick={() => toast.success("This is a rich colors toast")}
-      >
-        Show Toast
-      </Button>
-    </div>
-  ),
-};
-
-export const CloseButton: Story = {
-  args: {
-    position: "top-right",
-    richColors: false,
-    closeButton: true,
-  },
-  render: (args) => (
-    <div>
-      <SonnerToaster {...args} />
-      <Button
-        variant="outline"
-        onClick={() => toast.success("This is a toast with a close button")}
-      >
-        Show Toast
-      </Button>
-    </div>
-  ),
-};
-
-export const CustomStyling: Story = {
-  args: {
-    toastOptions: {
-      style: {
-        background: "linear-gradient(to right, #00b09b, #96c93d)",
-        color: "white",
-      },
-    },
-  },
-  render: (args) => (
-    <div>
-      <SonnerToaster {...args} />
-      <div className="flex flex-col gap-2">
-        <Button variant="outline" onClick={() => toast("This is a toast")}>
-          Show Toast
-        </Button>
-      </div>
-    </div>
-  ),
-};
-
-export const CustomContent: Story = {
-  args: {
-    position: "top-center",
-  },
-  render: (args) => (
-    <div>
-      <SonnerToaster {...args} />
-      <Button
-        variant="outline"
+        size="sm"
         onClick={() =>
-          toast.custom((t) => (
-            <div className="w-[356px] relative bg-neutral-900 text-white p-4 rounded-md flex items-center justify-between">
-              <h1>Custom toast</h1>
-              <Button
-                variant="destructive"
-                size="sm"
-                onClick={() => toast.dismiss(t)}
-              >
-                Dismiss
-              </Button>
-            </div>
-          ))
+          toast("Event has been created", {
+            position: "top-left",
+          })
         }
       >
-        Show Toast
+        Top Left
+      </Button>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() =>
+          toast("Event has been created", {
+            position: "top-center",
+          })
+        }
+      >
+        Top Center
+      </Button>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() =>
+          toast("Event has been created", {
+            position: "top-right",
+          })
+        }
+      >
+        Top Right
+      </Button>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() =>
+          toast("Event has been created", {
+            position: "bottom-left",
+          })
+        }
+      >
+        Bottom Left
+      </Button>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() =>
+          toast("Event has been created", {
+            position: "bottom-center",
+          })
+        }
+      >
+        Bottom Center
+      </Button>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() =>
+          toast("Event has been created", {
+            position: "bottom-right",
+          })
+        }
+      >
+        Bottom Right
       </Button>
     </div>
   ),

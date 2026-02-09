@@ -1,28 +1,42 @@
-"use client";
+"use client"
 
-import { Toaster as Sonner } from "sonner";
+import { Toaster as Sonner, type ToasterProps } from "sonner"
+import { CircleCheckIcon, InfoIcon, TriangleAlertIcon, OctagonXIcon, Loader2Icon } from "lucide-react"
 
-type SonnerToasterProps = React.ComponentProps<typeof Sonner>;
-
-const SonnerToaster = ({ ...props }: SonnerToasterProps) => {
+const Toaster = ({ ...props }: ToasterProps) => {
   return (
     <Sonner
       theme="light"
       className="toaster group"
+      icons={{
+        success: (
+          <CircleCheckIcon className="size-4" />
+        ),
+        info: (
+          <InfoIcon className="size-4" />
+        ),
+        warning: (
+          <TriangleAlertIcon className="size-4" />
+        ),
+        error: (
+          <OctagonXIcon className="size-4" />
+        ),
+        loading: (
+          <Loader2Icon className="size-4 animate-spin" />
+        ),
+      }}
       toastOptions={{
         classNames: {
-          toast:
-            "group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg",
-          description: "group-[.toast]:text-muted-foreground",
-          actionButton:
-            "group-[.toast]:bg-primary group-[.toast]:text-primary-foreground",
-          cancelButton:
-            "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground",
+          toast: "cn-toast group",
+          description: "group-[.cn-toast]:text-muted-foreground",
+          actionButton: "group-[.cn-toast]:bg-primary group-[.cn-toast]:text-primary-foreground group-[.cn-toast]:hover:bg-primary/90",
+          cancelButton: "group-[.cn-toast]:bg-muted group-[.cn-toast]:text-muted-foreground group-[.cn-toast]:hover:bg-muted/80",
+          closeButton: "group-[.cn-toast]:bg-background group-[.cn-toast]:text-foreground group-[.cn-toast]:border group-[.cn-toast]:border-border group-[.cn-toast]:hover:bg-muted",
         },
       }}
       {...props}
     />
-  );
-};
+  )
+}
 
-export { SonnerToaster };
+export { Toaster as SonnerToaster }

@@ -190,3 +190,27 @@
   from { transform: translateX(100%); }
   to { transform: translateX(0); }
 }
+
+/* Sonner Toast Styles */
+.cn-toast {
+  background-color: hsl(var(--background));
+  border: 1px solid hsl(var(--border));
+  color: hsl(var(--foreground));
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.cn-toast[data-type="success"] [data-icon] {
+  color: hsl(142 71% 45%);
+}
+
+.cn-toast[data-type="error"] [data-icon] {
+  color: hsl(0 84% 60%);
+}
+
+.cn-toast[data-type="warning"] [data-icon] {
+  color: hsl(38 92% 50%);
+}
+
+.cn-toast[data-type="info"] [data-icon] {
+  color: hsl(199 89% 48%);
+}
